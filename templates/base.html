@@ -62,7 +62,7 @@
                     </div>
                     <div class="dropdown-divider"></div>
                     <button type="button" class="dropdown-item close" data-dismiss="modal" data-toggle="modal"
-                        data-target="#exampleModal">
+                        data-target="#search-modal">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         Search
                     </button>
@@ -92,15 +92,16 @@
     </div>
 
     <!-- Nav Bar -->
-        <nav class="navbar navbar-light bg-light">
-            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#menu-modal">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <a class="navbar-brand m-0">Pencil And Paper</a>
-            <a href="#" class="btn btn-light">
-                <i class="fa-solid fa-basket-shopping"></i>
-            </a>
-        </nav>
+    <nav class="navbar navbar-light bg-light">
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#menu-modal">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <a class="navbar-brand m-0">Pencil And Paper</a>
+        <a href="#" class="btn btn-light">
+            <i class="fa-solid fa-basket-shopping"></i>
+        </a>
+    </nav>
+
     {% if messages %}
     <div class="message-container"></div>
     {% endif %}
@@ -110,6 +111,7 @@
 
     {% block content %}
     {% endblock %}
+
     <footer class="w-100 bg-dark light ">
         <div class="row m-0 p-0">
             <div class="col-12 col-md-6 pt-5 p-md-5">
@@ -125,6 +127,30 @@
         </div>
     </footer>
 
+    <!-- Search Modal -->
+    <div class="modal fade" id="search-modal" tabindex="-1" aria-labelledby="search-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="search-label">Search our products</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+                        <input class="form-control mr-sm-2" type="search" placeholder="What are you looking for today?"
+                            aria-label="Search" />
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     {% block postloadjd %}
     <script type="text/javascript">
