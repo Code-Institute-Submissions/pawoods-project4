@@ -15,12 +15,14 @@
     {% block corecss %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
 
     {% block corejs %}
+    <script src="https://kit.fontawesome.com/1704febde4.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
@@ -36,9 +38,69 @@
 
     <title>Project 4 {% block extra_title %}{% endblock %}</title>
 </head>
-
 <body>
-    <header class="container-fluid fixed-top"></header>
+    <!-- Menu Modal -->
+    <div class="modal fade menu" id="menu-modal" tabindex="-1" aria-labelledby="menu-label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="menu-label">Menu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <a class="sub-menu dropdown-item" data-toggle="collapse" href="#profile-options" role="button"
+                        aria-expanded="false" aria-controls="profile-options">
+                        <i class="fa-solid fa-user"></i>
+                        Profile
+                    </a>
+                    <div class="collapse" id="profile-options">
+                        <a href="" class="dropdown-item"><span class="spacer"></span>Orders</a>
+                        <a href="" class="dropdown-item"><span class="spacer"></span>Details</a>
+                        <a href="" class="dropdown-item"><span class="spacer"></span>Wish List</a>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <button type="button" class="dropdown-item close" data-dismiss="modal" data-toggle="modal"
+                        data-target="#exampleModal">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search
+                    </button>
+                    <a class="sub-menu dropdown-item" data-toggle="collapse" href="#category-options" role="button"
+                        aria-expanded="false" aria-controls="category-options">
+                        <i class="fa-solid fa-caret-down"></i>
+                        Category Name
+                    </a>
+                    <div class="collapse" id="category-options">
+                        <a href="" class="dropdown-item"><span class="spacer"></span>Sub Category 1</a>
+                        <a href="" class="dropdown-item"><span class="spacer"></span>Sub Category 2</a>
+                        <a href="" class="dropdown-item"><span class="spacer"></span>Sub Category 3</a>
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <a href="" class="dropdown-item">
+                        Log In
+                    </a>
+                    <a href="" class="dropdown-item">
+                        Register
+                    </a>
+                    <a href="" class="dropdown-item">
+                        Log Out
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nav Bar -->
+        <nav class="navbar navbar-light bg-light">
+            <button type="button" class="btn btn-light" data-toggle="modal" data-target="#menu-modal">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a class="navbar-brand m-0">Pencil And Paper</a>
+            <a href="#" class="btn btn-light">
+                <i class="fa-solid fa-basket-shopping"></i>
+            </a>
+        </nav>
     {% if messages %}
     <div class="message-container"></div>
     {% endif %}
@@ -50,6 +112,14 @@
     {% endblock %}
 
     {% block postloadjd %}
+    <script type="text/javascript">
+        $('a.sub-menu').on("click", function (e) {
+            $(this).next('div').toggle();
+            $('.collapse').not($(this).next('div')).hide();
+            e.preventDefault();
+            e.stopPropagation();
+        });
+    </script>
     {% endblock %}
 </body>
 

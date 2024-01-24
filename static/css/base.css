@@ -1,0 +1,68 @@
+/* General */
+body {
+    max-width: 2000px;
+    margin: auto;
+}
+
+/* Menu Modal */
+.menu .modal-body {
+    padding: 0.5rem 1rem;
+}
+
+.menu .modal-dialog, .menu .modal-content {
+    height: 100vh;
+    margin: 0;
+    max-width: 300px;
+    max-height: unset;
+}
+
+.dropdown-menu {
+    left: -1rem;
+    width: 200px;
+}
+
+.dropdown-item.close,
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 0.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #212529;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    opacity: 1;
+}
+
+.dropdown-item:focus,
+.dropdown-item:hover,
+.dropdown-item:active,
+.dropdown-item.close:focus,
+.dropdown-item.close:hover,
+.dropdown-item.close:active {
+    color: #212529;
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    text-shadow: unset;
+}
+
+.close:not(:disabled):not(.disabled):hover {
+    opacity: 1;
+}
+
+.dropdown-menu i,
+.modal-content i {
+    margin-right: 10px;
+}
+
+.spacer {
+    margin-left: 20px;
+}
+
+.collapse {
+    background-color: rgba(150, 150, 150, 0.2);
+}
