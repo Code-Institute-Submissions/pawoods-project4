@@ -4,6 +4,11 @@ body {
     margin: auto;
 }
 
+/* Custom Colours */
+.light {
+    color: white;
+}
+
 /* Menu Modal */
 .menu .modal-body {
     padding: 0.5rem 1rem;
