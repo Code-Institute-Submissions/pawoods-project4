@@ -92,11 +92,6 @@ body {
     background-color: rgba(150, 150, 150, 0.2);
 }
 
-/* Search Modal */
-.modal-content .modal-footer {
-    justify-content: center;
-}
-
 /* ---------- INDEX.HTML ---------- */
 .main {
     height: 100%;
