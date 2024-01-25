@@ -16,9 +16,26 @@ class Category(models.Model):
         return self.friendly_name
 
 
-class Product(models.Model):
+class SubCategory(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Sub Categories'
+
     category = models.ForeignKey('Category', null=True,
                                  on_delete=models.SET_NULL)
+    name = models.CharField(max_length=254)
+    friendly_name = models.CharField(max_length=25, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_friendly_name(self):
+        return self.friendly_name
+
+
+class Product(models.Model):
+    sub_category = models.ForeignKey('SubCategory', null=True,
+                                     on_delete=models.SET_NULL)
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
