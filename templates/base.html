@@ -92,15 +92,17 @@
     </div>
 
     <!-- Nav Bar -->
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light fixed-top">
         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#menu-modal">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <a class="navbar-brand m-0">Pencil And Paper</a>
+        <a href="#" class="navbar-brand m-0"><h2>Pencil + Paper</h2></a>
         <a href="#" class="btn btn-light">
             <i class="fa-solid fa-basket-shopping"></i>
         </a>
     </nav>
+
+    <div class="nav-spacer"></div>
 
     {% if messages %}
     <div class="message-container"></div>
@@ -140,7 +142,7 @@
                 <form action="">
                     <div class="modal-body">
                         <input class="form-control mr-sm-2" type="search" placeholder="What are you looking for today?"
-                            aria-label="Search" />
+                            aria-label="Search" id="search-input"/>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">

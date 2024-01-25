@@ -1,12 +1,23 @@
+/* Custom Colours */
+.light {
+    color: white;
+}
+
+/* ---------- BASE.HTML ---------- */
 /* General */
 body {
     max-width: 2000px;
     margin: auto;
 }
 
-/* Custom Colours */
-.light {
-    color: white;
+/* Navbar */
+.nav-spacer, .navbar {
+    width: 100%;
+    height: 70px;
+}
+
+.navbar i {
+    font-size: large;
 }
 
 /* Menu Modal */
@@ -70,4 +81,48 @@ body {
 
 .collapse {
     background-color: rgba(150, 150, 150, 0.2);
+}
+
+/* Search Modal */
+.modal-content .modal-footer {
+    justify-content: center;
+}
+
+/* ---------- INDEX.HTML ---------- */
+.main {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Carousel */
+.carousel-item {
+    width: 100%;
+    height: 50vh;
+}
+
+.carousel-caption {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    top: 10%;
+    bottom: unset;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.img-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+
+.img-cont img {
+    filter: brightness(30%);
 }
