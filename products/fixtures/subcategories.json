@@ -1,0 +1,74 @@
+[
+    {
+        "pk": 1,
+        "model": "products.subcategory",
+        "fields": {
+            "category": 1,
+            "name": "fine_writing",
+            "friendly_name": "Fine Writing"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.subcategory",
+        "fields": {
+            "category": 1,
+            "name": "budget_pens",
+            "friendly_name": "Budget Pens"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.subcategory",
+        "fields": {
+            "category": 2,
+            "name": "painting",
+            "friendly_name": "Painting"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.subcategory",
+        "fields": {
+            "category": 2,
+            "name": "drawing",
+            "friendly_name": "Drawing"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "products.subcategory",
+        "fields": {
+            "category": 3,
+            "name": "big_journals",
+            "friendly_name": "Big Journals"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "products.subcategory",
+        "fields": {
+            "category": 3,
+            "name": "small_journals",
+            "friendly_name": "Small Journals"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "products.subcategory",
+        "fields": {
+            "category": 4,
+            "name": "a4_diaries",
+            "friendly_name": "A4 Diaries"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "products.subcategory",
+        "fields": {
+            "category": 4,
+            "name": "a5_diaries",
+            "friendly_name": "A5 Diaries"
+        }
+    }
+]

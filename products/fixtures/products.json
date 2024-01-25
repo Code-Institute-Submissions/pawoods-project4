@@ -1,0 +1,106 @@
+[
+    {
+        "pk": 1,
+        "model": "products.product",
+        "fields": {
+            "sub_category": 1,
+            "sku": "123456",
+            "name": "Fountain Pen",
+            "description": "This is a very fancy pen, it's very good for writing.",
+            "price": 99.99,
+            "image_url": "",
+            "image": "123456.webp"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.product",
+        "fields": {
+            "sub_category": 1,
+            "sku": "123457",
+            "name": "Ballpoint Pen",
+            "description": "This is also a very fancy pen, it's very good for writing.",
+            "price": 79.99,
+            "image_url": "",
+            "image": "123457.webp"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.product",
+        "fields": {
+            "sub_category": 2,
+            "sku": "1234",
+            "name": "Basic Pen",
+            "description": "An everyday writing essential for the school or office.",
+            "price": 9.99,
+            "image_url": "",
+            "image": "1234.webp"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.product",
+        "fields": {
+            "sub_category": 2,
+            "sku": "123456",
+            "name": "Bic",
+            "description": "The classic, original disposable pen.",
+            "price": 1.00,
+            "image_url": "",
+            "image": ""
+        }
+    },
+    {
+        "pk": 5,
+        "model": "products.product",
+        "fields": {
+            "sub_category": 3,
+            "sku": "123460",
+            "name": "Paint Brush Set",
+            "description": "This set of fine brushes is great for the aspiring painter.",
+            "price": 19.99,
+            "image_url": "",
+            "image": ""
+        }
+    },
+    {
+        "pk": 6,
+        "model": "products.product",
+        "fields": {
+            "sub_category": 3,
+            "sku": "123465",
+            "name": "Canvas",
+            "description": "Stretched and primed ready for you to unleash your artistic expression.",
+            "price": 24.99,
+            "image_url": "",
+            "image": ""
+        }
+    },
+    {
+        "pk": 7,
+        "model": "products.product",
+        "fields": {
+            "sub_category": 4,
+            "sku": "123499",
+            "name": "Mechanical Pencil",
+            "description": "Sturdy and reliable for technical drawing and design.",
+            "price": 14.99,
+            "image_url": "",
+            "image": ""
+        }
+    },
+    {
+        "pk": 8,
+        "model": "products.product",
+        "fields": {
+            "sub_category": 4,
+            "sku": "123400",
+            "name": "A4 Sketchbook",
+            "description": "Textured, weighted paper to give a great surface for doodles and masterpieces alike.",
+            "price": 99.99,
+            "image_url": "",
+            "image": ""
+        }
+    }
+]
