@@ -5,10 +5,6 @@
 
 /* ---------- BASE.HTML ---------- */
 /* General */
-body {
-    max-width: 2000px;
-    margin: auto;
-}
 
 /* from Bulma */
 .icon {
