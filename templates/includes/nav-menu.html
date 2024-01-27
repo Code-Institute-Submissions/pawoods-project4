@@ -47,9 +47,11 @@
                     {{ category.friendly_name }}
                 </a>
                 <div class="collapse" id="category-options">
-                    <a href="" class="dropdown-item"><span class="spacer"></span>Sub category 1</a>
-                    <a href="" class="dropdown-item"><span class="spacer"></span>Sub Category 2</a>
-                    <a href="" class="dropdown-item"><span class="spacer"></span>Sub Category 3</a>
+                    {% for subcat in sub_categories %}
+                    {% if subcat.category == category %}
+                    <a href="" class="dropdown-item"><span class="spacer"></span>{{ subcat.friendly_name }}</a>
+                    {% endif %}
+                    {% endfor %}
                 </div>
                 {% endfor %}
                 <div class="dropdown-divider"></div>
