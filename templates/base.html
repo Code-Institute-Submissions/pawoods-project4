@@ -38,23 +38,24 @@
 
     <title>Project 4 {% block extra_title %}{% endblock %}</title>
 </head>
+
 <body>
     <!-- Nav Bar -->
     <nav class="navbar navbar-light bg-light fixed-top">
         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#menu-modal">
             <i class="fa-solid fa-bars"></i>
         </button>
-        <a href="#" class="navbar-brand m-0 d-sm-none">
+        <a href="{% url 'home' %}" class="navbar-brand m-0 d-sm-none">
             <h2>P + P</h2>
         </a>
-        <a href="#" class="navbar-brand m-0 d-none d-sm-inline">
+        <a href="{% url 'home' %}" class="navbar-brand m-0 d-none d-sm-inline">
             <h2>Pencil + Paper</h2>
         </a>
         <a href="#" class="btn btn-light">
             <i class="fa-solid fa-basket-shopping"></i>
         </a>
     </nav>
-    
+
     <div class="nav-spacer"></div>
 
     {% include 'includes/nav-menu.html' %}

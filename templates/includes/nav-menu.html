@@ -35,6 +35,9 @@
                     </div>
                 </form>
                 <div class="dropdown-divider"></div>
+                <a href="{% url 'products' %}" class="dropdown-item">
+                    All Products
+                </a>
                 {% for category in categories %}
                 <a class="sub-menu dropdown-item" data-toggle="collapse" href="#category-options" role="button"
                     aria-expanded="false" aria-controls="category-options">
@@ -44,12 +47,12 @@
                     {{ category.friendly_name }}
                 </a>
                 <div class="collapse" id="category-options">
-                    <a href="" class="dropdown-item"><span class="spacer"></span>Sub Category 1</a>
+                    <a href="" class="dropdown-item"><span class="spacer"></span>Sub category 1</a>
                     <a href="" class="dropdown-item"><span class="spacer"></span>Sub Category 2</a>
                     <a href="" class="dropdown-item"><span class="spacer"></span>Sub Category 3</a>
                 </div>
-                <div class="dropdown-divider"></div>
                 {% endfor %}
+                <div class="dropdown-divider"></div>
                 <a href="" class="dropdown-item">
                     <span class="icon">
                         <i class="fa-solid fa-right-to-bracket"></i>

@@ -5,6 +5,9 @@
 
 /* ---------- BASE.HTML ---------- */
 /* General */
+body {
+    min-height: 100vh;
+}
 
 /* from Bulma */
 .icon {
@@ -120,4 +123,20 @@
 
 .img-cont img {
     filter: brightness(30%);
+}
+
+/* ---------- PRODUCTS.HTML ---------- */
+
+.product-card {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
