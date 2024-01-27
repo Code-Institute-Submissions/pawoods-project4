@@ -1,12 +1,53 @@
 /* Custom Colours */
+.theme-light {
+    background-color: #FFFAEB;
+    color: #0D0D2F;
+}
+
+.theme-light a {
+    color: #0D0D2F;
+}
+
+.btn-light {
+    background-color: unset;
+    color: #0D0D2F;
+}
+
+.btn-light:hover, .btn-light:focus {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #0D0D2F;
+}
+
 .light {
     color: white;
+}
+
+.theme-dark {
+    background-color: #0D0D2F;
+    color: #FFFAEB;
+}
+
+.btn-dark {
+    color: #FFFAEB;
+    background-color: #0D0D2F80;
+}
+
+.btn-dark:hover,
+.btn-dark:focus {
+    color: #FFFAEB;
+    background-color: #0D0D2Fc9;
 }
 
 /* ---------- BASE.HTML ---------- */
 /* General */
 body {
     min-height: 100vh;
+    font-family: 'Nunito', sans-serif;
+    color: #0D0D2F;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'PT Serif', serif;
 }
 
 /* from Bulma */
@@ -38,21 +79,24 @@ body {
     margin: 0;
     max-width: 300px;
     max-height: unset;
+    left: -1px;
 }
 
-.dropdown-menu {
-    left: -1rem;
-    width: 200px;
+.menu .close {
+    color: inherit;
 }
 
-.dropdown-item.close,
+.form-control:focus {
+    box-shadow: unset;
+}
+
 .dropdown-item {
     display: block;
     width: 100%;
     padding: 0.25rem 0.5rem;
     clear: both;
+    color: inherit;
     font-weight: 400;
-    color: #212529;
     text-align: inherit;
     white-space: nowrap;
     background-color: transparent;
@@ -68,7 +112,7 @@ body {
 .dropdown-item.close:focus,
 .dropdown-item.close:hover,
 .dropdown-item.close:active {
-    color: #212529;
+    color: inherit;
     background-color: rgba(0, 0, 0, 0.2);
     opacity: 1;
     text-shadow: unset;
@@ -110,7 +154,7 @@ body {
     top: 10%;
     bottom: unset;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: #0D0D2F56;
     border-radius: 20px;
 }
 
@@ -118,11 +162,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: #0D0D2F;
 }
 
 .img-cont img {
-    filter: brightness(30%);
+    opacity: 30%;
 }
 
 /* ---------- PRODUCTS.HTML ---------- */

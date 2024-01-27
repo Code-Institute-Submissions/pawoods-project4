@@ -15,6 +15,9 @@
     {% block corecss %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&family=PT+Serif&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
@@ -36,12 +39,12 @@
     {% block extra_js %}
     {% endblock %}
 
-    <title>Project 4 {% block extra_title %}{% endblock %}</title>
+    <title>Pencil + Paper {% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-light bg-light fixed-top">
+    <nav class="navbar theme-light fixed-top">
         <button type="button" class="btn btn-light" data-toggle="modal" data-target="#menu-modal">
             <i class="fa-solid fa-bars"></i>
         </button>
@@ -61,7 +64,7 @@
     {% include 'includes/nav-menu.html' %}
 
     {% if messages %}
-    <div class="message-container"></div>
+    <div class="message-container theme-dark"></div>
     {% endif %}
 
     {% block page_header %}
@@ -70,7 +73,7 @@
     {% block content %}
     {% endblock %}
 
-    <footer class="w-100 bg-dark light ">
+    <footer class="w-100 theme-dark">
         <div class="row m-0 p-0">
             <div class="col-12 col-md-6 pt-5 p-md-5">
                 <p class="text-center">
