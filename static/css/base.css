@@ -32,6 +32,11 @@ h1, h2, h3, h4, h5 {
     color: #FFFAEB;
 }
 
+.theme-accent {
+    background-color: #5a5450;
+    color: #FFFAEB;
+}
+
 /* Custom Buttons */
 .btn-light {
     background-color: unset;
@@ -83,7 +88,7 @@ h1, h2, h3, h4, h5 {
     font-size: large;
 }
 
-/* Menu Modal */
+/* ---------- NAV-MENU.HTML ---------- */
 .menu .modal-body {
     padding: 0.5rem 1rem;
 }
@@ -168,7 +173,7 @@ h1, h2, h3, h4, h5 {
     top: 10%;
     bottom: unset;
     padding: 20px;
-    background-color: #0D0D2F56;
+    background-color: #5a545056;
     border-radius: 20px;
 }
 
@@ -176,7 +181,7 @@ h1, h2, h3, h4, h5 {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #0D0D2F;
+    background-color: #5a5450;
 }
 
 .img-cont img {
