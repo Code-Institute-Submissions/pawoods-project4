@@ -65,7 +65,9 @@
     {% include 'includes/nav-menu.html' %}
 
     {% if messages %}
-    <div class="message-container theme-dark"></div>
+    {% for message in messages %}
+    <div class="message-container theme-dark">{{ message }}</div>
+    {% endfor %}
     {% endif %}
 
     {% block page_header %}

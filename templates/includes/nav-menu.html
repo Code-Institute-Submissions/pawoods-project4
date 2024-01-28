@@ -22,7 +22,7 @@
                     <a href="" class="dropdown-item"><span class="spacer"></span>Wish List</a>
                 </div>
                 <div class="dropdown-divider"></div>
-                <form method="" action="">
+                <form method="GET" action="{% url 'products' %}">
                     <div class="input-group w-100">
                         <input class="form-control border rounded-0" type="text" name="q" placeholder="Search">
                         <div class="input-group-append">
@@ -47,9 +47,10 @@
                     {{ category.friendly_name }}
                 </a>
                 <div class="collapse" id="category-options">
+                    <a href="{% url 'products' %}?category={{ category.name }}" class="dropdown-item"><span class="spacer"></span>All {{ category.friendly_name }}</a>
                     {% for subcat in sub_categories %}
                     {% if subcat.category == category %}
-                    <a href="" class="dropdown-item"><span class="spacer"></span>{{ subcat.friendly_name }}</a>
+                    <a href="{% url 'products' %}?sub_category={{ subcat.name }}" class="dropdown-item"><span class="spacer"></span>{{ subcat.friendly_name }}</a>
                     {% endif %}
                     {% endfor %}
                 </div>
