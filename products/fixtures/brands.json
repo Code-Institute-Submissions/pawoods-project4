@@ -1,0 +1,46 @@
+[
+    {
+        "pk": 1,
+        "model": "products.brand",
+        "fields": {
+            "name": "parker",
+            "friendly_name": "Parker",
+            "description": "Parker description placeholder.",
+            "image": "",
+            "image_url": ""
+        }
+    },
+    {
+        "pk": 2,
+        "model": "products.brand",
+        "fields": {
+            "name": "lamy",
+            "friendly_name": "Lamy",
+            "description": "German (I want to say?) pen brand.",
+            "image": "",
+            "image_url": ""
+        }
+    },
+    {
+        "pk": 3,
+        "model": "products.brand",
+        "fields": {
+            "name": "winsdor_newton",
+            "friendly_name": "Windsor & Newton",
+            "description": "Painting supplies and equipment.",
+            "image": "",
+            "image_url": ""
+        }
+    },
+    {
+        "pk": 4,
+        "model": "products.brand",
+        "fields": {
+            "name": "castelli",
+            "friendly_name": "Castelli",
+            "description": "Italian brand of journals and diaries, based in Milan.",
+            "image": "",
+            "image_url": ""
+        }
+    }
+]

@@ -4,6 +4,7 @@
         "model": "products.product",
         "fields": {
             "sub_category": 1,
+            "brand": 1,
             "sku": "123456",
             "name": "Fountain Pen",
             "description": "This is a very fancy pen, it's very good for writing.",
@@ -17,6 +18,7 @@
         "model": "products.product",
         "fields": {
             "sub_category": 1,
+            "brand": 1,
             "sku": "123457",
             "name": "Ballpoint Pen",
             "description": "This is also a very fancy pen, it's very good for writing.",
@@ -30,6 +32,7 @@
         "model": "products.product",
         "fields": {
             "sub_category": 2,
+            "brand": 2,
             "sku": "1234",
             "name": "Basic Pen",
             "description": "An everyday writing essential for the school or office.",
@@ -56,6 +59,7 @@
         "model": "products.product",
         "fields": {
             "sub_category": 3,
+            "brand": 3,
             "sku": "123460",
             "name": "Paint Brush Set",
             "description": "This set of fine brushes is great for the aspiring painter.",
@@ -69,6 +73,7 @@
         "model": "products.product",
         "fields": {
             "sub_category": 3,
+            "brand": 3,
             "sku": "123465",
             "name": "Canvas",
             "description": "Stretched and primed ready for you to unleash your artistic expression.",
@@ -82,6 +87,7 @@
         "model": "products.product",
         "fields": {
             "sub_category": 4,
+            "brand": 2,
             "sku": "123499",
             "name": "Mechanical Pencil",
             "description": "Sturdy and reliable for technical drawing and design.",
@@ -95,6 +101,7 @@
         "model": "products.product",
         "fields": {
             "sub_category": 4,
+            "brand": 4,
             "sku": "123400",
             "name": "A4 Sketchbook",
             "description": "Textured, weighted paper to give a great surface for doodles and masterpieces alike.",
