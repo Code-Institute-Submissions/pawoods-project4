@@ -29,7 +29,8 @@
                 <h3>£{{ product.price|floatformat:2 }}</h3>
                 <p>{{ product.description }}</p>
                 <p>
-                    <a href="#">{{ product.sub_category.category.friendly_name }}</a>/<a href="#">{{ product.sub_category.friendly_name }}</a>
+                    <a href="{% url 'products' %}?category={{ product.sub_category.category.name }}">{{ product.sub_category.category.friendly_name }}</a> / 
+                    <a href="{% url 'products' %}?sub_category={{ product.sub_category.name }}">{{ product.sub_category.friendly_name }}</a>
                 </p>
                 <p>
                     <a href="#">{{ product.brand.friendly_name }}</a>
