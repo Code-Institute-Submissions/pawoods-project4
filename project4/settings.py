@@ -74,7 +74,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',  # Added to include MEDIA_URL
-                'products.contexts.menu_categories', # Added to include the nav menu categories globally
+                'products.contexts.menu_categories',  # Added to include the nav menu categories globally
+                'basket.contexts.basket_contents',  # Added to include basket contents globally
             ],
         },
     },

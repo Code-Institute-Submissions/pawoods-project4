@@ -1,6 +1,6 @@
 
 
-def menu_categories(request):
+def basket_contents(request):
 
     basket_items = []
     total = 0
