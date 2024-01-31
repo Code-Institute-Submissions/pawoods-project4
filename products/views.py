@@ -61,8 +61,6 @@ def all_products(request):
 
     context = {
         'products': products,
-        'categories': categories,
-        'sub_categories': sub_categories,
         'search_term': query,
         'current_category': category,
         'current_subcat': sub_category,
@@ -77,13 +75,8 @@ def product_detail(request, product_id):
 
     product = get_object_or_404(Product, pk=product_id)
 
-    categories = Category.objects.all()
-    sub_categories = SubCategory.objects.all()
-
     context = {
         'product': product,
-        'categories': categories,
-        'sub_categories': sub_categories,
     }
 
     return render(request, 'products/product_detail.html', context)
