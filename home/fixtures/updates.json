@@ -1,0 +1,24 @@
+[
+    {
+        "pk": 1,
+        "model": "home.update",
+        "fields": {
+            "title": "First Update Title",
+            "body": "This is the description for the first update",
+            "button": "",
+            "link": "",
+            "image": "updatetest.webp"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "home.update",
+        "fields": {
+            "title": "Fine Writing Season",
+            "body": "View our selection of fine writing pens",
+            "button": "Shop Now",
+            "link": "https://8000-pawoods-project4-us4bcwyspu.us2.codeanyapp.com/products/?sub_category=fine_writing",
+            "image": ""
+        }
+    }
+]

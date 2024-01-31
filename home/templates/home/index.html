@@ -14,28 +14,28 @@
         <!-- Carousel -->
         <div id="home-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                <!-- Slide 1 -->
-                <div class="carousel-item active">
+                {% for update in updates %}
+                <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
                     <div class="w-100 h-100 img-cont">
-                        <img src="https://m.media-amazon.com/images/I/41Ey-CDncdL._AC_UF894,1000_QL80_.jpg" class="d-block w-100" alt="...">
+                        {% if update.image %}
+                        <img src="{{ MEDIA_URL }}{{ update.image }}" class="d-block w-100" alt="...">
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}defaultupdate.jpg" class="d-block w-100" alt="...">
+                        {% endif %}
                     </div>
                     <div class="carousel-caption">
-                        <h5>New In Stock!</h5>
-                        <p>There are new products in this range, click the button below to browse the new collection
-                        </p>
-                        <h5><button class="btn btn-dark">Shop Now</button></h5>
+                        <h5>{{ update.title }}</h5>
+                        {% if update.body %}
+                        <p>{{ update.body }}</p>
+                        {% endif %}
+                        {% if update.link %}
+                        <a href="{{ update.link }}" class="btn btn-dark">
+                            {% if update.button %}{{ update.button }}{% else %}Go!{% endif %}
+                        </a>
+                        {% endif %}
                     </div>
                 </div>
-                <!-- Slide 2 -->
-                <div class="carousel-item">
-                    <div class="w-100 h-100 img-cont">
-                        <img src="https://wingback.co.uk/cdn/shop/files/NibcloseupTitanium_5000x.jpg?v=1697205419" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-caption">
-                        <h5>Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <!-- Carousel buttons -->
             <button class="carousel-control-prev" type="button" data-target="#home-carousel"

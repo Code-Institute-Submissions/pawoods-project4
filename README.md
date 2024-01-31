@@ -12,6 +12,10 @@
 
 ### Bugs
 
+Bug found when adding updates to the carousel, active attribute was being set to all slides in the loop - Fixed by adding if statement to check forloop.counter == 1 to only set active to the first update slide in the loop.
+
+
+
 ## Deployment
 
 ## Credits
