@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Product, Category, SubCategory
+from .models import Product, Category, SubCategory, Brand
 
 
 def all_products(request):
@@ -11,10 +11,12 @@ def all_products(request):
     products = Product.objects.all()
     categories = Category.objects.all()
     sub_categories = SubCategory.objects.all()
+    brands = Brand.objects.all()
 
     query = None
     category = None
     sub_category = None
+    brand = None
     sort = None
     direction = None
 
@@ -47,6 +49,11 @@ def all_products(request):
             selected_subcat = request.GET['sub_category']
             products = products.filter(sub_category__name=selected_subcat)
             sub_category = sub_categories.get(name=selected_subcat)
+        
+        if 'brand' in request.GET:
+            selected_brand = request.GET['brand']
+            products = products.filter(brand__name=selected_brand)
+            brand = brands.get(name=selected_brand)
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -64,6 +71,7 @@ def all_products(request):
         'search_term': query,
         'current_category': category,
         'current_subcat': sub_category,
+        'current_brand': brand,
         'current_sorting': current_sorting,
     }
 

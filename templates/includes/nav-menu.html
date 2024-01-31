@@ -57,6 +57,21 @@
                 </div>
                 {% endfor %}
                 <div class="dropdown-divider"></div>
+                {% if brands %}
+                <a class="sub-menu dropdown-item" data-toggle="collapse" href="#brand-options" role="button" aria-expanded="false"
+                    aria-controls="brand-options">
+                    <span class="icon">
+                        <i class="fa-solid fa-user"></i>
+                    </span>
+                    Shop By Brand
+                </a>
+                <div class="collapse" id="brand-options">
+                    {% for brand in brands %}
+                    <a href="{% url 'products' %}?brand={{ brand.name }}" class="dropdown-item"><span class="spacer"></span>{{ brand.friendly_name }}</a>
+                    {% endfor %}
+                </div>
+                <div class="dropdown-divider"></div>
+                {% endif %}
                 <div class="mb-3">
                     <a href="" class="dropdown-item">
                         <span class="icon">
