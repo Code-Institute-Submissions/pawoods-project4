@@ -33,7 +33,7 @@
                     <a href="{% url 'products' %}?sub_category={{ product.sub_category.name }}">{{ product.sub_category.friendly_name }}</a>
                 </p>
                 <p>
-                    <a href="#">{{ product.brand.friendly_name }}</a>
+                    <a href="{% url 'products' %}?brand={{ product.brand.name }}">{{ product.brand.friendly_name }}</a>
                 </p>
             </div>
         </div>

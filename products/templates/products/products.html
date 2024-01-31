@@ -9,6 +9,15 @@
 <div class="container-fluid text-center">
     <h2 class="mt-2">Products</h2>
     <hr class="w-50">
+    {% if current_brand %}
+    <div class="row text-center">
+        <div class="col-12 col-md-6 offset-md-3">
+            <h3>{{ current_brand.friendly_name }}</h3>
+            <p>{{ current_brand.description }}</p>
+        </div>
+    </div>
+    <hr class="w-50">
+    {% endif %}
 </div>
 {% endblock %}
 
@@ -60,7 +69,7 @@
                 </a>
                 <div class="category-links">
                     <span><a href="{% url 'products' %}?category={{ product.sub_category.category.name }}">{{ product.sub_category.category.friendly_name }}</a> / <a href="{% url 'products' %}?sub_category={{ product.sub_category.name }}">{{ product.sub_category.friendly_name }}</a></span>
-                    <a href="#">{{ product.brand.friendly_name }}</a>
+                    <a href="{% url 'products' %}?brand={{ product.brand.name }}">{{ product.brand.friendly_name }}</a>
                 </div>
             </div>
         </div>
