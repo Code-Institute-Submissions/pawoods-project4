@@ -68,6 +68,21 @@ h1, h2, h3, h4, h5 {
     border: none;
 }
 
+.btn-accent {
+    color: #FFFAEB;
+    background-color: #5a54509c;
+    border: none;
+}
+
+.btn-accent:hover,
+.btn-accent:focus,
+.btn-accent:active,
+.btn-accent:not(:disabled):not(.disabled):active {
+    color: #FFFAEB;
+    background-color: #5a5450;
+    border: none;
+}
+
 /* ---------- BASE.HTML ---------- */
 /* from Bulma */
 .icon {
@@ -251,3 +266,30 @@ h1, h2, h3, h4, h5 {
     border: 2px solid #FFFAEB;
     background-color: #5a5450;
 }
+
+/* ---------- PRODUCT_DETAIL.HTML ---------- */
+.product-info {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.qty-group {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.qty {
+    width: 5rem;
+    border: none;
+}
+
+.minus {
+    border-radius: 3px 0 0 3px;
+}
+
+.plus {
+    border-radius: 0 3px 3px 0;
+}
+

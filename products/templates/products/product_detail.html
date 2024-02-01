@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6">
-            <div class="product-text px-4 pb-4 p-md-4">
+            <div class="product-info px-4 p-md-4">
                 <h3>£{{ product.price|floatformat:2 }}</h3>
                 <p>{{ product.description }}</p>
                 <p>
@@ -35,7 +35,51 @@
                 <p>
                     <a href="{% url 'products' %}?brand={{ product.brand.name }}">{{ product.brand.friendly_name }}</a>
                 </p>
+                <form action="" method="POST" class="form">
+                    {% csrf_token %}
+                    <div class="input-group justify-content-center">
+                        <div class="qty-group my-2">
+                            <div class="btn btn-light minus">
+                                <span class="icon">
+                                    <i class="fas fa-minus"></i>
+                                </span>
+                            </div>
+                            <input type="number" value="1" min="1" max="99" name="quantity" class="rounded-0 qty text-center">
+                            <div class="btn btn-light plus">
+                                <span class="icon">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-last">
+                            <button type="submit" class="btn btn-dark my-2">
+                                Add to Basket
+                                <span class="icon">
+                                    <i class="fas fa-basket-shopping"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-first">
+                            <a href="{% url 'products' %}" class="btn btn-accent my-2">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                Keep Shopping
+                            </a>
+                        </div>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6">
+            
+        </div>
+        <div class="col-12 col-md-6">
+        
         </div>
     </div>
 </div>
