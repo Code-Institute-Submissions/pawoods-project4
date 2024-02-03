@@ -281,8 +281,12 @@ h1, h2, h3, h4, h5 {
 }
 
 .qty {
-    width: 5rem;
+    width: 3rem;
     border: none;
+}
+
+.qty:focus-visible {
+    outline: none;
 }
 
 .minus {

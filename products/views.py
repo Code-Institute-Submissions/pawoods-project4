@@ -82,9 +82,13 @@ def product_detail(request, product_id):
     """ Show product detail page using the pk of the clicked product """
 
     product = get_object_or_404(Product, pk=product_id)
+    brand = getattr(product, "brand")
+    sub_category = getattr(product, "sub_category")
+    related_products = Product.objects.filter(brand=brand, sub_category=sub_category).exclude(pk=product_id)
 
     context = {
         'product': product,
+        'related_products': related_products,
     }
 
     return render(request, 'products/product_detail.html', context)
