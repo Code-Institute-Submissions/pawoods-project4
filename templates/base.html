@@ -55,7 +55,7 @@
         <a href="{% url 'home' %}" class="navbar-brand m-0 d-none d-sm-inline">
             <h2>Pencil + Paper</h2>
         </a>
-        <a href="{% url 'view_basket' %}" class="btn btn-light">
+        <a href="{% url 'view_basket' %}" class="btn btn-light basket">
             <i class="fa-solid fa-basket-shopping"></i>
             {% if total > 0 %}
             <div class="item-count">
@@ -81,7 +81,7 @@
     {% block content %}
     {% endblock %}
 
-    <footer class="w-100 theme-dark">
+    <footer class="container-fluid w-100 theme-dark">
         <div class="row m-0 p-0">
             <div class="col-12 col-md-6 pt-4 p-md-4">
                 <h3 class="text-center">
