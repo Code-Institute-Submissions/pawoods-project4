@@ -32,11 +32,6 @@
                     <a href="{% url 'products' %}?category={{ product.sub_category.category.name }}">{{ product.sub_category.category.friendly_name }}</a> / 
                     <a href="{% url 'products' %}?sub_category={{ product.sub_category.name }}">{{ product.sub_category.friendly_name }}</a>
                 </p>
-                {% if product.brand %}
-                <p>
-                    <a href="{% url 'products' %}?brand={{ product.brand.name }}">{{ product.brand.friendly_name }}</a>
-                </p>
-                {% endif %}
                 <form action="" method="POST" class="form">
                     {% csrf_token %}
                     <div class="input-group justify-content-center">
@@ -55,7 +50,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-lg-6 order-lg-last">
+                        <div class="col-12">
                             <button type="submit" class="btn btn-dark my-2">
                                 Add to Basket
                                 <span class="icon">
@@ -63,39 +58,77 @@
                                 </span>
                             </button>
                         </div>
-                        <div class="col-12 col-lg-6 order-lg-first">
-                            <a href="{% url 'products' %}" class="btn btn-accent my-2">
-                                <span class="icon">
-                                    <i class="fas fa-chevron-left"></i>
-                                </span>
-                                Keep Shopping
-                            </a>
-                        </div>
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
             </div>
         </div>
     </div>
+    <div class="container-fluid">
+        <hr class="w-50">
+    </div>
     <div class="row">
         {% if product.brand %}
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 {% if not related_products %}offset-md-3{% endif %}">
             <h4>{{ product.brand.friendly_name }}</h4>
             <p>{{ product.brand.description }}</p>
-        </div>
-        <div class="col-12 col-md-6">
-            {% for rel_prod in related_products %}
-            {{ rel_prod.name }}
-
-            {% empty %}
-            None
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="col-12 col-md-6 offset-md-3">
-            Middle
+            <a href="{% url 'products' %}?brand={{ product.brand.name }}" class="btn btn-accent my-2">
+                View All {{ product.brand.friendly_name }}
+                <span class="icon">
+                    <i class="fas fa-chevron-right"></i>
+                </span>
+            </a>
         </div>
         {% endif %}
+        <div class="container-fluid d-flex d-md-none">
+            <hr class="w-50">
+        </div>
+        {% if related_products %}
+        <div class="col-12 col-md-6 {% if not product.brand %}offset-md-3{% endif %}">
+            <h4>Related Products</h4>
+            <div id="related-products" class="related-products carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    {% for rel_prod in related_products %}
+                    <!-- Slide -->
+                    <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
+                        <div class="carousel-caption d-flex">
+                            <a href="{% url 'product_detail' rel_prod.id %}" class="product-link">
+                                <h5>{{ rel_prod.name }}</h5>
+                                <div class="img-container">
+                                    <img src="{{ MEDIA_URL }}{{ rel_prod.image }}" class="" alt="...">
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Slide End -->
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-target="#related-products" data-slide="prev">
+                    <span class="carousel-control-prev-icon icon" aria-hidden="true">
+                        <i class="fas fa-chevron-left"></i>
+                    </span>
+                    <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-target="#related-products" data-slide="next">
+                    <span class="carousel-control-next-icon icon" aria-hidden="true">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                    <span class="sr-only">Next</span>
+                </button>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="container-fluid">
+        <hr class="w-50">
+    </div>
+    <div class="container-fluid pb-3">
+        <a href="{% url 'products' %}" class="btn btn-accent my-2">
+            <span class="icon">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+            Keep Shopping
+        </a>
     </div>
 </div>
 {% endblock %}

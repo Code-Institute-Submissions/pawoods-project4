@@ -84,7 +84,13 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     brand = getattr(product, "brand")
     sub_category = getattr(product, "sub_category")
-    related_products = Product.objects.filter(brand=brand, sub_category=sub_category).exclude(pk=product_id)
+    related_products = None
+    if brand:
+        related_products = Product.objects.filter(brand=brand, sub_category=sub_category).exclude(pk=product_id)
+        if not related_products:
+            related_products = Product.objects.filter(sub_category=sub_category).exclude(pk=product_id)
+    else:
+        related_products = Product.objects.filter(sub_category=sub_category).exclude(pk=product_id)
 
     context = {
         'product': product,

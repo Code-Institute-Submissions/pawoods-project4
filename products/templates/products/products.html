@@ -76,9 +76,21 @@
         {% endfor %}
     </div>
 </div>
-<div class="btt-btn btn btn-dark">
-    <span class="icon">
-        <i class="fas fa-chevron-up"></i>
-    </span>
+{% if search_term or current_brand or current_category or current_subcat %}
+<div class="container-fluid text-center">
+    <a href="{% url 'products' %}" class="btn btn-accent my-2">
+        <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+        Keep Shopping
+    </a>
+</div>
+{% endif %}
+<div class="container-fluid pb-3">
+    <div class="btt-btn btn btn-dark">
+        <span class="icon">
+            <i class="fas fa-chevron-up"></i>
+        </span>
+    </div>
 </div>
 {% endblock %}
