@@ -1,17 +1,87 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block extra_title %}
-| Basket
-{% endblock %}
-
+{% extends 'base.html' %} 
+{% load static %} 
+{% block extra_title %} | Basket{%endblock %} 
 {% block page_header %}
 <div class="container-fluid text-center">
     <h2 class="mt-2">Basket</h2>
-    <hr class="w-50">
+    <hr class="w-50"/>
 </div>
 {% endblock %}
-
 {% block content %}
-
+<div class="container-fluid basket-items">
+    {% if basket_items|length > 0 %}
+    {% for item in basket_items %}
+    <div class="row mb-3">
+        <!-- image -->
+        <div class="col-6 col-md-3 d-flex align-items-center justify-content-center order-md-1">
+            <a href="{% url 'product_detail' item.product.id %}" class="img-container">
+                {% if item.product.image %}
+                <img src="{{ MEDIA_URL }}{{ item.product.image }}" alt="{{ item.product.name }}"/>
+                {% else %}
+                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" />
+                {% endif %}
+            </a>
+        </div>
+        <!-- quantity buttons -->
+        <div class="col-6 col-md-3 d-flex align-items-center justify-content-center order-md-3">
+            <div class="input-group justify-content-center">
+                <div class="qty-group my-2">
+                    <div class="btn btn-light minus">
+                        <span class="icon">
+                            <i class="fas fa-minus"></i>
+                        </span>
+                    </div>
+                    <input type="number" value="{{ item.quantity }}" min="1" max="99" name="quantity" class="text-center rounded-0 qty"
+                    data-item_id="{{ item.product.id }}" id="{{ item.product.id }}">
+                    <div class="btn btn-light plus">
+                        <span class="icon">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- product name and brand -->
+        <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center order-md-2">
+            <a href="{% url 'product_detail' item.product.id %}">
+                {{ item.product.name }}
+            </a>
+            <a href="{% url 'products' %}?brand={{ product.brand.name }}">
+                <span class="icon">
+                    <i class="fa-solid fa-tags"></i>
+                </span>
+                {{ item.product.brand.friendly_name }}
+            </a>
+        </div>
+        <!-- line price -->
+        <div class="col-6 col-md-3 d-flex align-items-center justify-content-center order-md-4">
+            £{{ item.item_total | floatformat:2 }}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="row mb-3 d-flex flex-row-reverse">
+        <div class="col-6 col-md-4 d-flex align-items-center justify-content-center font-weight-bold">
+            Total: £{{ total }}
+        </div>
+    </div>
+    {% else %}
+    <h3 class="text-center">Your basket is currently empty!</h3>
+    {% endif %}
+</div>
+<div class="container-fluid d-flex justify-content-around mb-2">
+    <a href="{% url 'products' %}" class="btn btn-accent my-2">
+        <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+        </span>
+        Keep Shopping
+    </a>
+    {% if basket_items|length > 0 %}
+    <a href="" class="btn btn-dark my-2">
+        Go To Checkout
+        <span class="icon">
+            <i class="fas fa-chevron-right"></i>
+        </span>
+    </a>
+    {% endif %}  
+</div>
 {% endblock %}

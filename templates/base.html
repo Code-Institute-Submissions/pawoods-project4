@@ -57,6 +57,11 @@
         </a>
         <a href="{% url 'view_basket' %}" class="btn btn-light">
             <i class="fa-solid fa-basket-shopping"></i>
+            {% if total > 0 %}
+            <div class="item-count">
+                {{ product_count }}
+            </div>
+            {% endif %}
         </a>
     </nav>
 

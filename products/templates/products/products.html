@@ -68,8 +68,24 @@
                     </div>
                 </a>
                 <div class="category-links">
-                    <span><a href="{% url 'products' %}?category={{ product.sub_category.category.name }}">{{ product.sub_category.category.friendly_name }}</a> / <a href="{% url 'products' %}?sub_category={{ product.sub_category.name }}">{{ product.sub_category.friendly_name }}</a></span>
-                    <a href="{% url 'products' %}?brand={{ product.brand.name }}">{{ product.brand.friendly_name }}</a>
+                    <span>
+                        <a href="{% url 'products' %}?category={{ product.sub_category.category.name }}">
+                            {{ product.sub_category.category.friendly_name }}
+                        </a> / 
+                        <a href="{% url 'products' %}?sub_category={{ product.sub_category.name }}">
+                            {{ product.sub_category.friendly_name }}
+                        </a>
+                    </span>
+                    {% if product.brand %}
+                    <a href="{% url 'products' %}?brand={{ product.brand.name }}">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags"></i>
+                        </span>
+                        {{ product.brand.friendly_name }}
+                    </a>
+                    {% else %}
+                    <span>&nbsp;</span>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -82,7 +98,7 @@
         <span class="icon">
             <i class="fas fa-chevron-left"></i>
         </span>
-        Keep Shopping
+        All Products
     </a>
 </div>
 {% endif %}

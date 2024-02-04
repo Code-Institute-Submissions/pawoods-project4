@@ -5,6 +5,15 @@ body {
     color: #0D0D2F;
 }
 
+a {
+    color: #0D0D2F;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #5a5450;
+}
+
 h1,
 h2,
 h3,
@@ -106,6 +115,20 @@ h5 {
 
 .navbar i {
     font-size: large;
+}
+
+.item-count {
+    font-size: x-small;
+    font-weight: bolder;
+    background-color: #5a5450;
+    color: #FFFAEB;
+    border-radius: 50%;
+    padding: 1px 3px;
+    position: fixed;
+    min-width: 15px;
+    min-height: 15px;
+    top: 15px;
+    right: 15px;
 }
 
 /* ---------- NAV-MENU.HTML ---------- */
@@ -212,11 +235,6 @@ h5 {
 /* ---------- PRODUCTS.HTML ---------- */
 .product-container {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.product-container a,
-.product-container a:hover {
-    color: #0D0D2F;
 }
 
 .product-card {
@@ -327,10 +345,20 @@ h5 {
 }
 
 .related-products .img-container {
-    height: 150px;
+    height: 140px;
 }
 
 .related-products img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* ---------- BASKET.HTML ---------- */
+.basket-items .img-container {
+    height: 120px;
+}
+
+.basket-items img {
     max-width: 100%;
     max-height: 100%;
 }
