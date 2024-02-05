@@ -38,5 +38,64 @@ $(document).ready(function () {
 
             window.location.replace(currentUrl);
         }
-    })
+    });
+
+    function handleEnableDisable(itemId) {
+        var currentVal = parseInt($(`#qty-${itemId}`).val());
+        var minusDisabled = currentVal < 2;
+        var plusDisabled = currentVal > 98;
+        if (minusDisabled) {
+            $(`#minus-${itemId}`).addClass('disabled');
+        } else {
+            $(`#minus-${itemId}`).removeClass('disabled');
+        }
+        if (plusDisabled) {
+            $(`#plus-${itemId}`).addClass('disabled');
+        } else {
+            $(`#plus-${itemId}`).removeClass('disabled');
+        }
+    }
+
+    var qtyInputs = $('.qty');
+    for(var i = 0; i < qtyInputs.length; i++){
+        var itemId = $(qtyInputs[i]).data('item_id');
+        handleEnableDisable(itemId);
+    }
+
+    $('.qty').change(function() {
+        var itemId = $(this).data('item_id');
+        var closestInput = $(this).closest('.qty-group').find('.qty')[0];
+        var currentVal = parseInt($(closestInput).val());
+        if (currentVal < 1) {
+            $(closestInput).val(1);
+        } else if (currentVal > 99) {
+            $(closestInput).val(99);
+        }
+
+        handleEnableDisable(itemId);
+    });
+
+    $('.minus').click(function(e) {
+        e.preventDefault();
+        var closestInput = $(this).closest('.qty-group').find('.qty')[0];
+        var currentVal = parseInt($(closestInput).val());
+        if (currentVal > 1) {
+            $(closestInput).val(currentVal - 1);
+        }
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+    $('.plus').click(function (e) {
+        e.preventDefault();
+        var closestInput = $(this).closest('.qty-group').find('.qty')[0];
+        var currentVal = parseInt($(closestInput).val());
+        if (currentVal < 99) {
+            $(closestInput).val(currentVal + 1);
+        }
+        var itemId = $(this).data('item_id');
+        handleEnableDisable(itemId);
+    });
+
+
 });

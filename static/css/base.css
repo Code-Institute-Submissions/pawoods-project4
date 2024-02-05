@@ -96,6 +96,22 @@ h5 {
     border: none;
 }
 
+.btn.disabled {
+    color: unset;
+    cursor: unset;
+    background-color: unset;
+}
+
+.disabled:hover,
+.disabled:focus,
+.diabled:active,
+.disabled:not(:disabled):not(.disabled):active {
+    color: unset;
+    background-color: unset;
+    border: none;
+    cursor: unset;
+}
+
 /* ---------- BASE.HTML ---------- */
 /* from Bulma */
 .icon {
