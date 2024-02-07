@@ -97,5 +97,8 @@ $(document).ready(function () {
         handleEnableDisable(itemId);
     });
 
-
+    $('.update').click(function (e) {
+        var form = $(this).closest('.update-form');
+        form.submit();
+    });
 });

@@ -24,23 +24,32 @@
         </div>
         <!-- quantity buttons -->
         <div class="col-6 col-md-3 d-flex align-items-center justify-content-center order-md-3">
-            <div class="input-group justify-content-center">
-                <div class="qty-group my-2">
-                    <div class="btn btn-light minus" data-item_id="{{ item.item_id }}" id="minus-{{ item.item_id }}">
-                        <span class="icon">
-                            <i class="fas fa-minus"></i>
-                        </span>
-                    </div>
-                    <input type="number" value="{{ item.quantity }}" min="1" max="99"
-                        name="quantity" class="text-center rounded-0 qty"
-                        data-item_id="{{ item.item_id }}" id="qty-{{ item.item_id }}">
-                    <div class="btn btn-light plus" data-item_id="{{ item.item_id }}" id="plus-{{ item.item_id }}">
-                        <span class="icon">
-                            <i class="fas fa-plus"></i>
-                        </span>
+            <form action="{% url 'update_basket' item.item_id %}" method="POST" class="form update-form">
+                {% csrf_token %}
+                <div class="input-group justify-content-center">
+                    <div class="qty-group my-2">
+                        <div class="btn btn-light minus" data-item_id="{{ item.item_id }}" id="minus-{{ item.item_id }}">
+                            <span class="icon">
+                                <i class="fas fa-minus"></i>
+                            </span>
+                        </div>
+                        <input type="number" value="{{ item.quantity }}" min="1" max="99"
+                            name="quantity" class="text-center rounded-0 qty"
+                            data-item_id="{{ item.item_id }}" id="qty-{{ item.item_id }}">
+                        <div class="btn btn-light plus" data-item_id="{{ item.item_id }}" id="plus-{{ item.item_id }}">
+                            <span class="icon">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-between">
+                        <a class="update"><small>Update</small></a>
+                        <a class="remove-link" data-toggle="modal" data-target="#confirm-remove-{{ item.item_id }}"><small>Remove</small></a>
+                    </div>
+                </div>
+            </form>           
         </div>
         <!-- product name and brand -->
         <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center order-md-2">
@@ -59,6 +68,37 @@
             £{{ item.item_total | floatformat:2 }}
         </div>
     </div>
+    
+    <!-- Confirm Delete Modal -->
+    <div class="modal fade" id="confirm-remove-{{ item.item_id }}" tabindex="-1" aria-labelledby="remove-modal-{{ item.item_id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="remove-modal-{{ item.item_id }}">Confirm Remove</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to remove {{ item.product.name }} from your shopping basket?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-accent" data-dismiss="modal">
+                        <span class="icon">
+                            <i class="fa-solid fa-xmark"></i>
+                        </span>
+                        Cancel
+                    </button>
+                    <a class="btn btn-dark remove" id="remove-{{ item.item_id }}">
+                        Remove
+                        <span class="icon">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
     {% endfor %}
     <div class="row mb-3 d-flex flex-row-reverse">
         <div class="col-6 col-md-4 d-flex align-items-center justify-content-center font-weight-bold">
@@ -69,6 +109,7 @@
     <h3 class="text-center">Your basket is currently empty!</h3>
     {% endif %}
 </div>
+
 <div class="container-fluid d-flex justify-content-around mb-2">
     <a href="{% url 'products' %}" class="btn btn-accent my-2">
         <span class="icon">
@@ -85,4 +126,22 @@
     </a>
     {% endif %}  
 </div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+<script>
+    $('.remove').click(function (e) {
+        console.log('clicked')
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove-')[1];
+        var url = `/basket/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken}
+
+        $.post(url, data)
+        .done(function(){
+            location.reload();
+        });
+    });
+</script>
+
 {% endblock %}

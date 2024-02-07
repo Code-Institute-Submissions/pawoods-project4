@@ -14,7 +14,9 @@
 
 Bug found when adding updates to the carousel, active attribute was being set to all slides in the loop - Fixed by adding if statement to check forloop.counter == 1 to only set active to the first update slide in the loop.
 
+Bug found where update link was not submitting the form on basket page - this was caused by empty href tags left on the links element, removing them fixed the issue.
 
+Bug found where remove link on basket page threw an error for missing or incorrect csrf token - moving this function from the script.js file directly into the postload block on the basket.html page fixed the issue.
 
 ## Deployment
 
