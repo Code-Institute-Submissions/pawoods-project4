@@ -152,6 +152,13 @@ h5 {
     right: -2px;
 }
 
+.message-container {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    z-index: 999999999;
+}
+
 /* ---------- NAV-MENU.HTML ---------- */
 .menu .modal-body {
     padding: 0.5rem 1rem;

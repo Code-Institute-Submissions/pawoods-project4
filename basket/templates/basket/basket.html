@@ -129,7 +129,7 @@
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}
-<script>
+<script type="text/javascript">
     $('.remove').click(function (e) {
         console.log('clicked')
         var csrfToken = "{{ csrf_token }}";
@@ -143,5 +143,4 @@
         });
     });
 </script>
-
 {% endblock %}
