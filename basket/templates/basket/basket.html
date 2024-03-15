@@ -23,12 +23,12 @@
             </a>
         </div>
         <!-- quantity buttons -->
-        <div class="col-6 col-md-3 d-flex align-items-center justify-content-center order-md-3">
+        <div class="col-6 col-md-3 d-flex align-items-center justify-content-center order-md-3 px-1">
             <form action="{% url 'update_basket' item.item_id %}" method="POST" class="form update-form">
                 {% csrf_token %}
                 <div class="input-group justify-content-center">
                     <div class="qty-group my-2">
-                        <div class="btn btn-light minus" data-item_id="{{ item.item_id }}" id="minus-{{ item.item_id }}">
+                        <div class="btn btn-light minus p-1" data-item_id="{{ item.item_id }}" id="minus-{{ item.item_id }}">
                             <span class="icon">
                                 <i class="fas fa-minus"></i>
                             </span>
@@ -36,18 +36,16 @@
                         <input type="number" value="{{ item.quantity }}" min="1" max="99"
                             name="quantity" class="text-center rounded-0 qty"
                             data-item_id="{{ item.item_id }}" id="qty-{{ item.item_id }}">
-                        <div class="btn btn-light plus" data-item_id="{{ item.item_id }}" id="plus-{{ item.item_id }}">
+                        <div class="btn btn-light plus p-1" data-item_id="{{ item.item_id }}" id="plus-{{ item.item_id }}">
                             <span class="icon">
                                 <i class="fas fa-plus"></i>
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-between">
-                        <a class="update"><small>Update</small></a>
-                        <a class="remove-link" data-toggle="modal" data-target="#confirm-remove-{{ item.item_id }}"><small>Remove</small></a>
-                    </div>
+                <div class="col-12 d-flex justify-content-between p-0">
+                    <a class="update"><small>Update</small></a>
+                    <a class="remove-link" data-toggle="modal" data-target="#confirm-remove-{{ item.item_id }}"><small>Remove</small></a>
                 </div>
             </form>           
         </div>
@@ -64,11 +62,14 @@
             </a>
         </div>
         <!-- line price -->
-        <div class="col-6 col-md-3 d-flex align-items-center justify-content-center order-md-4">
-            £{{ item.item_total | floatformat:2 }}
+        <div class="col-6 col-md-3 d-flex flex-column align-items-center justify-content-center order-md-4">
+            <span class="line-price">
+                £{{ item.item_total | floatformat:2 }}
+            </span>
+            <small>£{{ item.product.price }} each</small>
         </div>
     </div>
-    
+    <hr class="w-50"/>
     <!-- Confirm Delete Modal -->
     <div class="modal fade" id="confirm-remove-{{ item.item_id }}" tabindex="-1" aria-labelledby="remove-modal-{{ item.item_id }}" aria-hidden="true">
         <div class="modal-dialog">
@@ -110,21 +111,27 @@
     {% endif %}
 </div>
 
-<div class="container-fluid d-flex justify-content-around mb-2">
-    <a href="{% url 'products' %}" class="btn btn-accent my-2">
-        <span class="icon">
-            <i class="fas fa-chevron-left"></i>
-        </span>
-        Keep Shopping
-    </a>
-    {% if basket_items|length > 0 %}
-    <a href="" class="btn btn-dark my-2">
-        Go To Checkout
-        <span class="icon">
-            <i class="fas fa-chevron-right"></i>
-        </span>
-    </a>
-    {% endif %}  
+<div class="container-fluid">
+    <div class="row d-flex justify-content-around mb-2">
+        {% if basket_items|length > 0 %}
+        <div class="col-12 col-sm-6 text-center order-sm-2">
+            <a href="" class="btn btn-dark my-2">
+                Go To Checkout
+                <span class="icon">
+                    <i class="fas fa-chevron-right"></i>
+                </span>
+            </a>
+        </div>
+        {% endif %}  
+        <div class="col-12 col-sm-6 text-center order-sm-1">
+            <a href="{% url 'products' %}" class="btn btn-accent my-2">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                Keep Shopping
+            </a>
+        </div>
+    </div> 
 </div>
 {% endblock %}
 {% block postloadjs %}

@@ -20,6 +20,18 @@ Bug found where remove link on basket page threw an error for missing or incorre
 
 ## Deployment
 
+local environment
+
+pip3 install -r requirements.txt
+add host to allowed hosts
+python3 manage.py migrate
+python3 manage.py createsuperuser
+- Enter username
+- Enter email address
+- Enter Password
+- Confirm Password
+Superuser is created
+
 ## Credits
 
 Back to Top button - <https://codepen.io/Shiko/pen/NxpZae>
