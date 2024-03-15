@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'products',
     'basket',
     'checkout',
+
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -79,6 +81,10 @@ TEMPLATES = [
                 'products.contexts.menu_categories',  # Added to include the nav menu categories globally
                 'basket.contexts.basket_contents',  # Added to include basket contents globally
             ],
+            'builtins': [
+                'crispy_forms.templatetags.crispy_forms_tags',
+                'crispy_forms.templatetags.crispy_forms_field',
+            ]
         },
     },
 ]

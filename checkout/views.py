@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.conf import settings
+
+from .forms import OrderForm
+from .models import Order, OrderLineItem
 
 
 def checkout(request):
@@ -10,6 +14,10 @@ def checkout(request):
         )
         return redirect(reverse('products'))
 
+    order_form = OrderForm()
     template = 'checkout/checkout.html'
+    context = {
+        'order_form': order_form,
+    }
 
-    return render(request, template)
+    return render(request, template, context)

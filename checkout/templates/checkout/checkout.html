@@ -1,0 +1,150 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block extra_title %} | Checkout{%endblock %} 
+{% block content %}
+<div class="container-fluid basket-items">
+    <div class="row">
+        <!-- Order Summary -->
+        <div class="col-12 col-md-6">
+            <div class="container-fluid text-center">
+                <h2 class="mt-2">Order Summary</h2>
+                <hr class="w-50"/>
+            </div>          
+            {% if basket_items|length > 0 %}
+            {% for item in basket_items %}
+            <div class="row mb-3">
+                <!-- image -->
+                <div class="col-6 col-sm-4 d-flex align-items-center justify-content-center">
+                    <a href="{% url 'product_detail' item.product.id %}" class="img-container">
+                        {% if item.product.image %}
+                        <img src="{{ MEDIA_URL }}{{ item.product.image }}" alt="{{ item.product.name }}"/>
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" />
+                        {% endif %}
+                    </a>
+                </div>
+                <!-- product name and brand -->
+                <div class="col-6 col-sm-4 d-flex flex-column align-items-center justify-content-center">
+                    <a href="{% url 'product_detail' item.product.id %}">
+                        {{ item.product.name }}
+                    </a>
+                    <a href="{% url 'products' %}?brand={{ product.brand.name }}">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags"></i>
+                        </span>
+                        {{ item.product.brand.friendly_name }}
+                    </a>
+                </div>
+                <!-- quantity and individual price on xs screens -->
+                <div class="col-6 d-flex d-sm-none flex-column text-center align-items-center justify-content-center py-1">
+                    <small>{{ item.quantity }} @ £{{ item.product.price }}</small>
+                </div>
+                <!-- line price -->
+                <div class="col-6 col-sm-4 d-flex flex-column align-items-center justify-content-center">
+                    <small class="d-none d-sm-block">{{ item.quantity }} @ £{{ item.product.price }}</small>
+                    <span class="line-price">
+                        £{{ item.item_total | floatformat:2 }}
+                    </span>
+                </div>
+            </div>
+            <hr class="w-50"/>
+            {% endfor %}
+            <div class="row mb-3 d-flex flex-row-reverse">
+                <div class="col-6 col-md-4 d-flex align-items-center justify-content-center font-weight-bold">
+                    Total: £{{ total }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <!-- Details Form -->
+        <div class="col-12 col-md-6">
+            <div class="d-none d-md-block container-fluid text-center">
+                <h2 class="mt-2">Details</h2>
+                <hr class="w-50"/>
+            </div>  
+            <div class="container-fluid">
+                <p class="text-center">Please fill in details below to complate your order</p>
+                <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend class="pt-2 pb-1 m-0">
+                            <small>
+                                <span class="icon mx-2"><i class="fa-solid fa-user"></i></span>Details
+                            </small>
+                        </legend>
+                        <div class="name-group d-flex">
+                            {{ order_form.first_name | as_crispy_field }}
+                            {{ order_form.last_name | as_crispy_field }}
+                        </div>
+                        {{ order_form.email | as_crispy_field }}
+                        {{ order_form.phone_number | as_crispy_field }}
+                    </fieldset>
+                    <fieldset>
+                        <legend class="pt-2 pb-1 m-0">
+                            <small>
+                                <span class="icon mx-2"><i class="fa-solid fa-truck"></i></span>Shipping
+                            </small>
+                        </legend>
+                        {{ order_form.street_address_1 | as_crispy_field }}
+                        {{ order_form.street_address_2 | as_crispy_field }}
+                        {{ order_form.town_or_city | as_crispy_field }}
+                        {{ order_form.county | as_crispy_field }}
+                        {{ order_form.country | as_crispy_field }}
+                        {{ order_form.postcode | as_crispy_field }}
+                         <div class="form-check form-check-inline d-flex justify-content-center mr-0 pt-2 pb-1">
+                            {% if user.is_authenticated %}
+                            <input type="checkbox" class="form-check-input mx-2" id="id-save-info" name="save-info" checked>
+                            <label for="id-save-info" class="form-check-label">Save as default delivery information.</label>
+                            {% else %}
+                            <label for="id-save-info" class="form-check-label">
+                                <a href="{% url 'account_signup' %}">Create an account</a> or 
+                                <a href="{% url 'account_login' %}">login</a> to save this information
+                            </label>
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend class="pt-2 pb-1 m-0">
+                            <small>
+                                <span class="icon mx-2"><i class="fa-solid fa-credit-card"></i></span>Payment
+                            </small>
+                        </legend>
+                        <div id="card-element">
+                            <!-- Stripe Card Element -->
+                        </div>
+                        <div class="text-danger" id="card-errors" role="alert">
+                            <!-- Error Messages -->
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-around mb-2">
+        {% if basket_items|length > 0 %}
+        <div class="col-12 col-sm-6 text-center order-sm-2">
+            <a href="" class="btn btn-dark my-2">
+                Confirm Payment
+                <span class="icon">
+                    <i class="fas fa-chevron-right"></i>
+                </span>
+            </a>
+            <p class="small text-danger">
+                Your card will be charged £{{ total }}
+            </p>
+        </div>
+        {% endif %}  
+        <div class="col-12 col-sm-6 text-center order-sm-1">
+            <a href="{% url 'view_basket' %}" class="btn btn-accent my-2">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                Back To Basket
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

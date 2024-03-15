@@ -395,3 +395,29 @@ h5 {
 .remove-link:hover {
     color: rgb(175, 0, 0);
 }
+
+/* ---------- CHECKOUT.HTML ---------- */
+legend {
+    font-size: 1.25rem;
+}
+
+.stripe-style-input {
+    margin: 0.25rem 0;
+    width: 100%;
+}
+
+.name-group {
+    flex-direction: column;
+}
+
+
+@media (min-width: 576px) {
+    .name-group {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #div_id_first_name, #div_id_last_name {
+        width: 47%;
+    }
+}
