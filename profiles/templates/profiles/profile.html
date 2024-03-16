@@ -1,0 +1,156 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block extra_title %} | Profile{%endblock %} 
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Details Form -->
+        <div class="col-12 col-md-6">
+            <div class="container-fluid text-center">
+                <h2 class="mt-2">Details</h2>
+                <hr class="w-50"/>
+            </div>
+            <div class="container-fluid">
+                <p class="text-center">Please fill in details below to complate your order</p>
+                <form action="">
+                    {% csrf_token %}
+                    <fieldset>
+                        <legend class="pt-2 pb-1 m-0">
+                            <small>
+                                <span class="icon mx-2"><i class="fa-solid fa-user"></i></span>Details
+                            </small>
+                        </legend>
+                        <div class="name-group d-flex">
+
+                        </div>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend class="pt-2 pb-1 m-0">
+                            <small>
+                                <span class="icon mx-2"><i class="fa-solid fa-truck"></i></span>Shipping
+                            </small>
+                        </legend>
+
+                    </fieldset>
+                    <fieldset>
+                        <legend class="pt-2 pb-1 m-0">
+                            <small>
+                                <span class="icon mx-2"><i class="fa-solid fa-credit-card"></i></span>Payment
+                            </small>
+                        </legend>
+
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-12 text-center">
+                <a href="" class="btn btn-dark my-2">
+                    Update Details
+                    <span class="icon">
+                        <i class="fas fa-rotate"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+        <!-- Order History -->
+        <div class="col-12 col-md-6">
+            <div class="container-fluid text-center">
+                <h2 class="mt-2">Order History</h2>
+                <hr class="w-50"/>
+            </div>          
+            {% if basket_items|length > 0 %}
+            {% for item in basket_items %}
+            <div class="row basket-items mb-3">
+                <!-- image -->
+                <div class="col-6 col-sm-4 d-flex align-items-center justify-content-center">
+                    <a href="{% url 'product_detail' item.product.id %}" class="img-container">
+                        {% if item.product.image %}
+                        <img src="{{ MEDIA_URL }}{{ item.product.image }}" alt="{{ item.product.name }}"/>
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" />
+                        {% endif %}
+                    </a>
+                </div>
+                <!-- product name and brand -->
+                <div class="col-6 col-sm-4 d-flex flex-column align-items-center justify-content-center">
+                    <a href="{% url 'product_detail' item.product.id %}">
+                        {{ item.product.name }}
+                    </a>
+                    <a href="{% url 'products' %}?brand={{ product.brand.name }}">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags"></i>
+                        </span>
+                        {{ item.product.brand.friendly_name }}
+                    </a>
+                </div>
+                <!-- quantity and individual price on xs screens -->
+                <div class="col-6 d-flex d-sm-none flex-column text-center align-items-center justify-content-center py-1">
+                    <small>{{ item.quantity }} @ £{{ item.product.price }}</small>
+                </div>
+                <!-- line price -->
+                <div class="col-6 col-sm-4 d-flex flex-column align-items-center justify-content-center">
+                    <small class="d-none d-sm-block">{{ item.quantity }} @ £{{ item.product.price }}</small>
+                    <span class="line-price">
+                        £{{ item.item_total | floatformat:2 }}
+                    </span>
+                </div>
+            </div>
+            <hr class="w-50"/>
+            {% endfor %}
+            <div class="row mb-3 d-flex flex-row-reverse">
+                <div class="col-6 col-md-4 d-flex align-items-center justify-content-center font-weight-bold">
+                    Total: £{{ total }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="container-fluid text-center">
+                <h2 class="mt-2">Wish List</h2>
+                <hr class="w-50"/>
+            </div> 
+            {% for product in products %}
+            <div class="product-container col-12 col-sm-6 col-md-4 col-lg-3 my-1">
+                <div class="card product-card border-0 text-center pb-3 px-3">
+                    <a href="{% url 'product_detail' product.id %}" class="product-link">
+                        <div class="card image-card border-0">
+                            {% if product.image %}
+                            <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.name }}" class="p-4">
+                            {% else %}
+                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" class="p-4">
+                            {% endif %}
+                        </div>
+                        <div class="product-text">
+                            <h5 class="mb-1">{{ product.name }}</h5>
+                            <p class="mb-1">£{{ product.price|floatformat:2 }}</p>
+                        </div>
+                    </a>
+                    <div class="category-links">
+                        <span>
+                            <a href="{% url 'products' %}?category={{ product.sub_category.category.name }}">
+                                {{ product.sub_category.category.friendly_name }}
+                            </a> / 
+                            <a href="{% url 'products' %}?sub_category={{ product.sub_category.name }}">
+                                {{ product.sub_category.friendly_name }}
+                            </a>
+                        </span>
+                        {% if product.brand %}
+                        <a href="{% url 'products' %}?brand={{ product.brand.name }}">
+                            <span class="icon">
+                                <i class="fa-solid fa-tags"></i>
+                            </span>
+                            {{ product.brand.friendly_name }}
+                        </a>
+                        {% else %}
+                        <span>&nbsp;</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
