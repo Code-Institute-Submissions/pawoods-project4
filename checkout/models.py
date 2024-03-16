@@ -28,7 +28,7 @@ class Order(models.Model):
 
     def update_total(self):
         """ Update order total based on line items """
-        self.total = self.lineItems.aggregate(Sum('line_total'))['line_total__sum']
+        self.total = self.lineitems.aggregate(Sum('line_total'))['line_total__sum']
         self.save()
 
     def save(self, *args, **kwargs):
@@ -45,12 +45,12 @@ class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    line_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    line_total = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
         """ Overide the save method, set line total and update order total """
 
-        self.item_total = self.product.price * self.quantity
+        self.line_total = self.product.price * self.quantity
         super().save(*args, **kwargs)
 
     def __str__(self):
