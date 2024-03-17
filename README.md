@@ -98,6 +98,8 @@ For all manual user testing, lighthouse performance testing and code validation,
 
 3. Bug found where remove link on basket page threw an error for missing or incorrect csrf token - moving this function from the script.js file directly into the postload block on the basket.html page fixed the issue.
 
+4. Bug with codeanywhere using environment variables, worked well for STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY but not for _STRIPE_WH_SECRET - fixed by setting the STRIP_WH_SECRET in an env.py file and adding if statement to import the file to settings.py and similarly to decide whether to use os.environ.get or os.getenv to allow getting the environment variable from Heroku
+
 #### Unfixed Bugs
 ## Deployment
 ### Live Deployment

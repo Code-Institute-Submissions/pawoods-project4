@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+if os.path.exists('env.py'):
+    import env
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,8 +29,7 @@ SECRET_KEY = 'django-insecure-iaqjhy4^!+wxck&tyrj#7!+yg8@@!8x24h2s#0e#$r)78$1r!^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-pawoods-project4-us4bcwyspu.us2.codeanyapp.com',
-                '8000-pawoods-project4-7virwu35hg.us1.codeanyapp.com']
+ALLOWED_HOSTS = ['8000-pawoods-project4-7virwu35hg.us1.codeanyapp.com']
 
 
 # Application definition
@@ -177,4 +179,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
-STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+if os.path.exists('env.py'):
+    STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
+else:
+    STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
