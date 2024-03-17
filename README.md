@@ -118,6 +118,13 @@ Superuser is created
 ### Requirements and Settings
 ### database
 ### Heroku
+### Stripe
+Sign up for account
+verify account from account verification email
+click developers option and API Keys tab to find stripe public key and secret key
+- These can be saved in environemt variable in a developement environment on in an env.py file, within the environment, they can also be exported using the command export ~VARIABLE NAME~=~kay value~
+- Run server in the development environment and copy the URL
+- in the Webhooks tabs in stripe, click add enpoint, paste the environment URL in and select all events. Once created, the signing secret can be revealed and copdied into the environment with the export command or directly into environment variable as STRIPE_WH_SECRET
 
 ## Credits
 
