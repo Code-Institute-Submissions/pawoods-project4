@@ -156,8 +156,9 @@ h5 {
 .message-container {
     position: fixed;
     top: 70px;
-    right: 15px;
+    right: 10px;
     z-index: 999999999;
+    max-width: 90vw;
 }
 
 /* ---------- NAV-MENU.HTML ---------- */
@@ -454,6 +455,10 @@ select option[value=""] {
     flex-direction: column;
 }
 
+/* ---------- CHECKOUT_SUCCESS.HTML ---------- */
+.word-wrap {
+    word-wrap: break-word;
+}
 
 @media (min-width: 576px) {
     .name-group {
