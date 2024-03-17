@@ -1,0 +1,81 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block extra_title %} | Order Complete{%endblock %} 
+{% block content %}
+<div class="container-fluid basket-items">
+    <div class="row">
+        <!-- Order Summary -->
+        <div class="col-12 col-md-6">
+            <div class="container-fluid text-center">
+                <h2 class="mt-2">Order Complete</h2>
+                <hr class="w-50"/>
+                <p>Thank you for your order, please see order summary below. A confirmation email will be sent to <strong>{{ order.email }}.</strong></p>
+            </div>
+            {% for item in basket_items %}
+            <div class="row mb-3">
+                <!-- image -->
+                <div class="col-6 col-sm-4 d-flex align-items-center justify-content-center">
+                    <a href="{% url 'product_detail' item.product.id %}" class="img-container">
+                        {% if item.product.image %}
+                        <img src="{{ MEDIA_URL }}{{ item.product.image }}" alt="{{ item.product.name }}"/>
+                        {% else %}
+                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" />
+                        {% endif %}
+                    </a>
+                </div>
+                <!-- product name and brand -->
+                <div class="col-6 col-sm-4 d-flex flex-column align-items-center justify-content-center">
+                    <a href="{% url 'product_detail' item.product.id %}">
+                        {{ item.product.name }}
+                    </a>
+                    <a href="{% url 'products' %}?brand={{ product.brand.name }}">
+                        <span class="icon">
+                            <i class="fa-solid fa-tags"></i>
+                        </span>
+                        {{ item.product.brand.friendly_name }}
+                    </a>
+                </div>
+                <!-- quantity and individual price on xs screens -->
+                <div class="col-6 d-flex d-sm-none flex-column text-center align-items-center justify-content-center py-1">
+                    <small>{{ item.quantity }} @ £{{ item.product.price }}</small>
+                </div>
+                <!-- line price -->
+                <div class="col-6 col-sm-4 d-flex flex-column align-items-center justify-content-center">
+                    <small class="d-none d-sm-block">{{ item.quantity }} @ £{{ item.product.price }}</small>
+                    <span class="line-price">
+                        £{{ item.item_total | floatformat:2 }}
+                    </span>
+                </div>
+            </div>
+            <hr class="w-50"/>
+            {% endfor %}
+            <div class="row mb-3 d-flex flex-row-reverse">
+                <div class="col-6 col-md-4 d-flex align-items-center justify-content-center font-weight-bold">
+                    Total: £{{ total }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="{% url 'products' %}" class="btn btn-accent my-2">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Details Form -->
+        <div class="col-12 col-md-6">
+            <div class="d-none d-md-block container-fluid text-center">
+                <h2 class="mt-2">Details</h2>
+                <hr class="w-50"/>
+            </div>  
+            <div class="container-fluid">
+                <p class="text-center"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

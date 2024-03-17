@@ -10,7 +10,6 @@
                 <h2 class="mt-2">Order Summary</h2>
                 <hr class="w-50"/>
             </div>          
-            {% if basket_items|length > 0 %}
             {% for item in basket_items %}
             <div class="row mb-3">
                 <!-- image -->
@@ -54,7 +53,16 @@
                     Total: £{{ total }}
                 </div>
             </div>
-            {% endif %}
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="{% url 'view_basket' %}" class="btn btn-accent my-2">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        Back To Basket
+                    </a>
+                </div>
+            </div>
         </div>
         <!-- Details Form -->
         <div class="col-12 col-md-6">
@@ -112,41 +120,34 @@
                         <div id="card-element">
                             <!-- Stripe Card Element -->
                         </div>
-                        <div class="text-danger" id="card-errors" role="alert">
+                        <div class="text-danger pl-2" id="card-errors" role="alert">
                             <!-- Error Messages -->
                         </div>
                     </fieldset>
+                    <div class="container-fluid">
+                        <div class="row d-flex justify-content-around mb-2">
+                            {% if basket_items|length > 0 %}
+                            <div class="col-12 text-center">
+                                <button id="submit-button" class="btn btn-dark my-2">
+                                    Confirm Payment
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </span>
+                                </button>
+                                <p class="small text-danger">
+                                    Your card will be charged £{{ total }}
+                                </p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row d-flex justify-content-around mb-2">
-        {% if basket_items|length > 0 %}
-        <div class="col-12 col-sm-6 text-center order-sm-2">
-            <a href="" class="btn btn-dark my-2">
-                Confirm Payment
-                <span class="icon">
-                    <i class="fas fa-chevron-right"></i>
-                </span>
-            </a>
-            <p class="small text-danger">
-                Your card will be charged £{{ total }}
-            </p>
-        </div>
-        {% endif %}  
-        <div class="col-12 col-sm-6 text-center order-sm-1">
-            <a href="{% url 'view_basket' %}" class="btn btn-accent my-2">
-                <span class="icon">
-                    <i class="fas fa-chevron-left"></i>
-                </span>
-                Back To Basket
-            </a>
-        </div>
-    </div>
-</div>
+
 {% endblock %}
 
 {% block postloadjs %}
