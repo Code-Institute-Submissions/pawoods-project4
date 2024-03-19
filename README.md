@@ -100,6 +100,8 @@ For all manual user testing, lighthouse performance testing and code validation,
 
 4. Bug with codeanywhere using environment variables, worked well for STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY but not for _STRIPE_WH_SECRET - fixed by setting the STRIP_WH_SECRET in an env.py file and adding if statement to import the file to settings.py and similarly to decide whether to use os.environ.get or os.getenv to allow getting the environment variable from Heroku
 
+5. Bug found where stripe payment intent only holds a full name field where I am using first and last name - Fixed by adding the names individually to the payment intent metadata and concatenating both to form the shipping and billing name
+
 #### Unfixed Bugs
 ## Deployment
 ### Live Deployment

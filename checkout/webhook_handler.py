@@ -27,15 +27,11 @@ class StripeWH_Handler:
         """
         intent = event.data.object
 
-        print(intent)
-
         pid = intent.id
         basket = intent.metadata.basket
         save_info = intent.metadata.save_info
         first_name = intent.metadata.first_name
         last_name = intent.metadata.last_name
-
-        print(first_name, last_name)
 
         # Get the Charge object
         stripe_charge = stripe.Charge.retrieve(
