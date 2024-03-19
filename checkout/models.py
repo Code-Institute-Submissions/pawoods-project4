@@ -21,6 +21,8 @@ class Order(models.Model):
     street_address_2 = models.CharField(max_length=40, null=True, blank=True)
     county = models.CharField(max_length=40, null=True, blank=True)
     total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    original_basket = models.TextField(null=False, blank=False, default='')
+    stripe_pid = models.CharField(max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
         """ Generate a random, unique order number """

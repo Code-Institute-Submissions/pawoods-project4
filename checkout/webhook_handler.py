@@ -5,6 +5,7 @@ from products.models import Product
 
 import json
 import stripe
+import time
 
 
 class StripeWH_Handler:
@@ -48,25 +49,34 @@ class StripeWH_Handler:
                 shipping_details.address[field] = None
 
         order_exists = False
-        try:
-            order = Order.objects.get(
-                first_name__iexact=first_name,
-                last_name__iexact=last_name,
-                email__iexact=billing_details.email,
-                phone_number__iexact=shipping_details.phone,
-                country__iexact=shipping_details.address.country,
-                postcode__iexact=shipping_details.address.postal_code,
-                town_or_city__iexact=shipping_details.address.city,
-                street_address_1__iexact=shipping_details.address.line1,
-                street_address_2__iexact=shipping_details.address.line2,
-                county__iexact=shipping_details.address.state,
-                total=total,
-            )
-            order_exists = True
+        attempt = 1
+        while attempt <= 5:
+            try:
+                order = Order.objects.get(
+                    first_name__iexact=first_name,
+                    last_name__iexact=last_name,
+                    email__iexact=billing_details.email,
+                    phone_number__iexact=shipping_details.phone,
+                    country__iexact=shipping_details.address.country,
+                    postcode__iexact=shipping_details.address.postal_code,
+                    town_or_city__iexact=shipping_details.address.city,
+                    street_address_1__iexact=shipping_details.address.line1,
+                    street_address_2__iexact=shipping_details.address.line2,
+                    county__iexact=shipping_details.address.state,
+                    total=total,
+                    original_basket=basket,
+                    stripe_pid=pid,
+                )
+                order_exists = True
+                break
+            except Order.DoesNotExist:
+                attempt += 1
+                time.sleep(1)
+        if order_exists:
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
-        except Order.DoesNotExist:
+        else:
             try:
                 order = Order.objects.create(
                     first_name=first_name,
@@ -79,6 +89,8 @@ class StripeWH_Handler:
                     street_address_1=shipping_details.address.line1,
                     street_address_2=shipping_details.address.line2,
                     county=shipping_details.address.state,
+                    original_basket=basket,
+                    stripe_pid=pid,
                 )
                 for item_id, quantity in json.loads(basket).items():
                     product = Product.objects.get(id=item_id)
@@ -91,10 +103,11 @@ class StripeWH_Handler:
             except Exception as e:
                 if order:
                     order.delete()
-                return HttpResponse(content=f'Webhook received: {event["type"]} | ERROR: {e}', 
-                    status=500)
+            return HttpResponse(content=f'Webhook received: {event["type"]} | ERROR: {e}', 
+                status=500)
+
         return HttpResponse(
-            content=f'Webhook received: {event["type"]}',
+            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
