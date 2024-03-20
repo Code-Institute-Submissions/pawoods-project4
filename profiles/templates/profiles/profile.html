@@ -30,11 +30,70 @@
         <div class="col-12 col-md-6">
             <div class="container-fluid text-center">
                 <h2 class="mt-2">Order History</h2>
-                <hr class="w-50"/>
+                <hr class="w-50 d-none d-sm-block"/>
             </div>
-            {% for order in orders %} 
-                {{ order }}
-            {% endfor %}
+            <div class="container-fluid order-history">
+                {% if orders %}
+                <div class="row mb-2">
+                    <div class="d-none d-sm-block col-sm-6 text-center">
+                        <strong>Order Number</strong>
+                    </div>
+                    <div class="d-none d-sm-block col-sm-3 text-center">
+                        <strong>Date</strong>
+                    </div>
+                    <div class="d-none d-sm-block col-sm-3 text-center">
+                        <strong>Total</strong>
+                    </div>
+                </div>
+                {% for order in orders %}
+                <hr class="w-50"/>
+                <div class="order-line">
+                    <div class="row mb-2">
+                        <div class="col-12 col-sm-6 word-wrap text-center p-1">
+                            <small>
+                                <strong class="d-sm-none">Order Number:</strong> 
+                                <a href="#" class="detail-toggle">{{ order.order_number }}</a>
+                            </small>
+                        </div>
+                        <div class="col-6 col-sm-3 text-center p-1 d-flex justify-content-center align-items-center">
+                            <small>
+                                <strong class="d-sm-none">Date:</strong> 
+                                {{ order.date|date:'d/m/Y' }}
+                            </small>
+                        </div>
+                        <div class="col-6 col-sm-3 text-center p-1 d-flex justify-content-center align-items-center">
+                            <small>
+                                <strong class="d-sm-none">Total:</strong> 
+                                <strong>£{{ order.total }}</strong>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row order-details hidden">
+                        {% for item in order.lineitems.all %}
+                        <div class="col-4 text-center p-1 d-flex justify-content-center align-items-center">
+                            <small>
+                                {{ item.product.name }}
+                            </small>
+                        </div>
+                        <div class="col-4 text-center p-1 d-flex justify-content-center align-items-center">
+                            <small>
+                                {{ item.quantity }} @ £{{ item.product.price|floatformat:2 }}
+                            </small>
+                        </div>
+                        <div class="col-4 text-center p-1 d-flex justify-content-center align-items-center">
+                            <small>
+                                £{{ item.line_total|floatformat:2 }}
+                            </small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <p>No order history.</p>
+                {% endif %}
+            </div>
+
             {% if basket_items|length > 0 %}
             {% for item in basket_items %}
             <div class="row basket-items mb-3">

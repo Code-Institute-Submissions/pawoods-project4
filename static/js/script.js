@@ -106,4 +106,11 @@ $(document).ready(function () {
         var form = $(this).closest('.update-form');
         form.submit();
     });
+
+    // Toggle order history details
+    $('.detail-toggle').click(function(e) {
+        e.preventDefault();
+        var details = $(this).closest('.order-line').find('.order-details')[0];
+        $(details).toggleClass('hidden');
+    })
 });

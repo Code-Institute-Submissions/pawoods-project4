@@ -7,6 +7,8 @@ from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
 from basket.contexts import basket_contents
+from profiles.forms import UserProfileForm
+from profiles.models import UserProfile
 
 import stripe
 import json
@@ -113,9 +115,30 @@ def checkout(request):
 def checkout_success(request, order_number):
     """
     A view to handle and display successful checkouts
+    and add user profile to order if user is signed in
     """
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+
+    if request.user.is_authenticated:
+        profile = UserProfile.objects.get(user=request.user)
+        order.user_profile = profile 
+        order.save()
+
+        if save_info:
+            profile_data = {
+                'default_phone_number': order.phone_number,
+                'default_country': order.country,
+                'default_postcode': order.postcode,
+                'default_town_or_city': order.town_or_city,
+                'default_street_address_1': order.street_address_1,
+                'default_street_address_2': order.street_address_2,
+                'default_county': order.county,
+            }
+            user_profile_form = UserProfileForm(profile_data, instance=profile)
+            if user_profile_form.is_valid():
+                user_profile_form.save()
+
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation email \
         will be sent to {order.email}.')

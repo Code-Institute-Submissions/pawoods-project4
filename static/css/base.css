@@ -490,6 +490,21 @@ select option[value=""] {
     color: #aab7c4;
 }
 
+.order-history .dropdown-toggle {
+    white-space: unset;
+    text-align: left;
+}
+
+.order-history .dropdown-toggle::after {
+    display: none;
+}
+
+.order-history .dropdown-menu.show {
+    float: unset;
+    position: relative;
+    translate: unset;
+}
+
 @media (min-width: 576px) {
     .name-group {
         flex-direction: row;
@@ -498,5 +513,12 @@ select option[value=""] {
 
     #div_id_first_name, #div_id_last_name {
         width: 47%;
+    }
+}
+
+@media (min-width: 768px) {
+    .order-history {
+        max-height: 428px;
+        overflow-y: auto;
     }
 }
