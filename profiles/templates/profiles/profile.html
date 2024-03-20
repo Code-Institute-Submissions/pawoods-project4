@@ -12,44 +12,18 @@
             </div>
             <div class="container-fluid">
                 <p class="text-center">Please fill in details below to complate your order</p>
-                <form action="">
+                <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
-                    <fieldset>
-                        <legend class="pt-2 pb-1 m-0">
-                            <small>
-                                <span class="icon mx-2"><i class="fa-solid fa-user"></i></span>Details
-                            </small>
-                        </legend>
-                        <div class="name-group d-flex">
-
-                        </div>
-
-                    </fieldset>
-                    <fieldset>
-                        <legend class="pt-2 pb-1 m-0">
-                            <small>
-                                <span class="icon mx-2"><i class="fa-solid fa-truck"></i></span>Shipping
-                            </small>
-                        </legend>
-
-                    </fieldset>
-                    <fieldset>
-                        <legend class="pt-2 pb-1 m-0">
-                            <small>
-                                <span class="icon mx-2"><i class="fa-solid fa-credit-card"></i></span>Payment
-                            </small>
-                        </legend>
-
-                    </fieldset>
+                    {{ form|crispy }}
+                    <div class="row d-flex justify-content-center">
+                        <button class="btn btn-dark my-2">
+                            Update Details
+                            <span class="icon">
+                                <i class="fas fa-rotate"></i>
+                            </span>
+                        </button>
+                    </div>
                 </form>
-            </div>
-            <div class="col-12 text-center">
-                <a href="" class="btn btn-dark my-2">
-                    Update Details
-                    <span class="icon">
-                        <i class="fas fa-rotate"></i>
-                    </span>
-                </a>
             </div>
         </div>
         <!-- Order History -->
@@ -57,7 +31,10 @@
             <div class="container-fluid text-center">
                 <h2 class="mt-2">Order History</h2>
                 <hr class="w-50"/>
-            </div>          
+            </div>
+            {% for order in orders %} 
+                {{ order }}
+            {% endfor %}
             {% if basket_items|length > 0 %}
             {% for item in basket_items %}
             <div class="row basket-items mb-3">
@@ -153,4 +130,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript" src="{% static 'profiles/js/country_field.js' %}"></script>
 {% endblock %}

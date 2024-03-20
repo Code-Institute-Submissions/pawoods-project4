@@ -480,6 +480,16 @@ select option[value=""] {
     word-wrap: break-word;
 }
 
+/* ---------- PROFILE.HTML ---------- */
+#id_default_country,
+#id_default_country option:not(:first-child) {
+    color: #0d0d2f;
+}
+
+#id_default_country option:first-child {
+    color: #aab7c4;
+}
+
 @media (min-width: 576px) {
     .name-group {
         flex-direction: row;

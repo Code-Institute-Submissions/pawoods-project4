@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    // Open and close sublist menu accordions
     $('a.sub-menu').on("click", function (e) {
         $(this).next('div').toggle();
         $('.collapse').not($(this).next('div')).hide();
@@ -6,6 +7,7 @@ $(document).ready(function () {
         e.stopPropagation();
     });
 
+    // Back to Top Button
     var $backToTop = $(".btt-btn");
     $backToTop.hide();
     $(window).on('scroll', function () {
@@ -19,6 +21,7 @@ $(document).ready(function () {
         $("html, body").animate({ scrollTop: 0 }, 500);
     });
 
+    // Product sort selector function
     $('#sort-selector').change(function() {
         var selector = $(this);
         var currentUrl = new URL(window.location);
@@ -40,6 +43,7 @@ $(document).ready(function () {
         }
     });
 
+    // Functions to handle enabling/disabling plus and minus basket item qty buttons
     function handleEnableDisable(itemId) {
         var currentVal = parseInt($(`#qty-${itemId}`).val());
         var minusDisabled = currentVal < 2;
@@ -97,6 +101,7 @@ $(document).ready(function () {
         handleEnableDisable(itemId);
     });
 
+    // Update basket item qty
     $('.update').click(function (e) {
         var form = $(this).closest('.update-form');
         form.submit();
