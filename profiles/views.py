@@ -27,3 +27,19 @@ def profile(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def wish_list(request, item_id):
+    profile = get_object_or_404(UserProfile, user=request.user)
+    product = get_object_or_404(Product, pk=item_id)
+
+    wish_list = WishList.objects.get(product=product, profile=profile)
+
+    if wish_list.exists:
+        wish_list.delete()
+    else:
+        wish_list_instance = WishList.objects.create(
+            profile=profile,
+            product=product,
+        )

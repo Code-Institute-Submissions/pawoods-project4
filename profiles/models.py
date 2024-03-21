@@ -31,5 +31,5 @@ def create_or_update_profile(sender, instance, created, **kwargs):
 
 
 class WishList(models.Model):
-    user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE, related_name='user')
+    profile = models.ForeignKey(UserProfile, null=False, blank=False, on_delete=models.CASCADE, related_name='wishlist')
     product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
