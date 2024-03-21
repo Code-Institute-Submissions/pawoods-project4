@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -52,5 +52,5 @@ def wish_list(request, product_id):
             product=product,
         )
         messages.info(request, 'Added to your Wish List')
-    return redirect(reverse('products'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
         

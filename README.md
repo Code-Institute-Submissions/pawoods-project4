@@ -138,4 +138,6 @@ Back to Top button - [CodePen](https://codepen.io/Shiko/pen/NxpZae) - Roman
 
 List specific field of query set - [Reddit](https://www.reddit.com/r/django/comments/x4vgcs/how_to_get_all_the_ids_into_a_list/) - User Deleted
 
+Redirect to page that requested a view - [Reddit](https://www.reddit.com/r/django/comments/c54ycv/how_to_conditionally_redirect_a_django_view/) - NotSelfAware
+
 ### Support Credits
