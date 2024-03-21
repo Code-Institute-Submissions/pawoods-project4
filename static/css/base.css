@@ -328,6 +328,21 @@ h5 {
     z-index: 99;
 }
 
+.wish-list a:hover {
+    text-decoration: none;
+    text-shadow: 0px 0px 10px #0D0D2F;
+}
+
+.wish-list a.liked {
+    color: rgb(198, 21, 207);
+}
+
+.wish-list a.liked:hover {
+    color: rgb(198, 21, 207);
+    text-decoration: none;
+    text-shadow: 0px 0px 10px rgb(198, 21, 207);
+}
+
 /* ---------- PRODUCT_DETAIL.HTML ---------- */
 .product-info {
     height: 100%;

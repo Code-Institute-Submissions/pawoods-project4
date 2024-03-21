@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from .models import UserProfile
+from .models import UserProfile, WishList
 from .forms import UserProfileForm
+from products.models import Product
 
 
 @login_required
@@ -18,11 +19,14 @@ def profile(request):
 
     form = UserProfileForm(instance=profile)
     orders = profile.orders.all()
+    wish_list = profile.wishlist.all()
 
     template = 'profiles/profile.html'
     context = {
+        'profile': profile,
         'form': form,
         'orders': orders,
+        'wish_list': wish_list,
         'on_profile': True,
     }
 
@@ -30,16 +34,23 @@ def profile(request):
 
 
 @login_required
-def wish_list(request, item_id):
+def wish_list(request, product_id):
     profile = get_object_or_404(UserProfile, user=request.user)
-    product = get_object_or_404(Product, pk=item_id)
+    product = get_object_or_404(Product, pk=product_id)
 
-    wish_list = WishList.objects.get(product=product, profile=profile)
+    try:
+        wish_list = WishList.objects.get(product=product, profile=profile)
+    except WishList.DoesNotExist:
+        wish_list = None    
 
-    if wish_list.exists:
+    if wish_list:
         wish_list.delete()
+        messages.info(request, 'Removed from your Wish List')
     else:
         wish_list_instance = WishList.objects.create(
             profile=profile,
             product=product,
         )
+        messages.info(request, 'Added to your Wish List')
+    return redirect(reverse('products'))
+        

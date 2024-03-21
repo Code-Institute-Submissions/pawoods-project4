@@ -7,11 +7,12 @@
         <!-- Details Form -->
         <div class="col-12 col-md-6">
             <div class="container-fluid text-center">
-                <h2 class="mt-2">{{ profile }}Details</h2>
+                <h2 class="mt-2">Details</h2>
                 <hr class="w-50"/>
             </div>
             <div class="container-fluid">
-                <p class="text-center">Please fill in details below to complate your order</p>
+                <p class="pl-3"><strong>Username: </strong>{{ profile.user.username }}</p>
+                <p class="pl-3"><strong>Email: </strong>{{ profile.user.email }}</p>
                 <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
                     {{ form|crispy }}
@@ -93,99 +94,70 @@
                 <p>No order history.</p>
                 {% endif %}
             </div>
-
-            {% if basket_items|length > 0 %}
-            {% for item in basket_items %}
-            <div class="row basket-items mb-3">
-                <!-- image -->
-                <div class="col-6 col-sm-4 d-flex align-items-center justify-content-center">
-                    <a href="{% url 'product_detail' item.product.id %}" class="img-container">
-                        {% if item.product.image %}
-                        <img src="{{ MEDIA_URL }}{{ item.product.image }}" alt="{{ item.product.name }}"/>
-                        {% else %}
-                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}" />
-                        {% endif %}
-                    </a>
-                </div>
-                <!-- product name and brand -->
-                <div class="col-6 col-sm-4 d-flex flex-column align-items-center justify-content-center">
-                    <a href="{% url 'product_detail' item.product.id %}">
-                        {{ item.product.name }}
-                    </a>
-                    <a href="{% url 'products' %}?brand={{ product.brand.name }}">
-                        <span class="icon">
-                            <i class="fa-solid fa-tags"></i>
-                        </span>
-                        {{ item.product.brand.friendly_name }}
-                    </a>
-                </div>
-                <!-- quantity and individual price on xs screens -->
-                <div class="col-6 d-flex d-sm-none flex-column text-center align-items-center justify-content-center py-1">
-                    <small>{{ item.quantity }} @ £{{ item.product.price }}</small>
-                </div>
-                <!-- line price -->
-                <div class="col-6 col-sm-4 d-flex flex-column align-items-center justify-content-center">
-                    <small class="d-none d-sm-block">{{ item.quantity }} @ £{{ item.product.price }}</small>
-                    <span class="line-price">
-                        £{{ item.item_total | floatformat:2 }}
-                    </span>
-                </div>
-            </div>
-            <hr class="w-50"/>
-            {% endfor %}
-            <div class="row mb-3 d-flex flex-row-reverse">
-                <div class="col-6 col-md-4 d-flex align-items-center justify-content-center font-weight-bold">
-                    Total: £{{ total }}
-                </div>
-            </div>
-            {% endif %}
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-8 offset-2">
             <div class="container-fluid text-center">
                 <h2 class="mt-2">Wish List</h2>
                 <hr class="w-50"/>
             </div> 
-            {% for product in products %}
-            <div class="product-container col-12 col-sm-6 col-md-4 col-lg-3 my-1">
-                <div class="card product-card border-0 text-center pb-3 px-3">
-                    <a href="{% url 'product_detail' product.id %}" class="product-link">
-                        <div class="card image-card border-0">
-                            {% if product.image %}
-                            <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.name }}" class="p-4">
+            <div class="row">
+                {% for wish in wish_list %}
+                <div class="product-container col-12 col-sm-6 col-md-4 col-lg-3 my-1">
+                    <div class="wish-list">
+                        <a class="icon liked" href="{% url 'wish_list' wish.product.id %}">
+                            <i class="fa-solid fa-heart"></i>
+                        </a>
+                    </div>
+                    <div class="card product-card border-0 text-center pb-3 px-3">
+                        <a href="{% url 'product_detail' wish.product.id %}" class="product-link">
+                            <div class="card image-card border-0">
+                                {% if wish.product.image %}
+                                <img src="{{ MEDIA_URL }}{{ wish.product.image }}" alt="{{ wish.product.name }}" class="p-4">
+                                {% else %}
+                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ wish.product.name }}" class="p-4">
+                                {% endif %}
+                            </div>
+                            <div class="product-text">
+                                <h5 class="mb-1">{{ wish.product.name }}</h5>
+                                <p class="mb-1">£{{ wish.product.price|floatformat:2 }}</p>
+                            </div>
+                        </a>
+                        <div class="category-links">
+                            <span>
+                                <a href="{% url 'products' %}?category={{ wish.product.sub_category.category.name }}">
+                                    {{ wish.product.sub_category.category.friendly_name }}
+                                </a> / 
+                                <a href="{% url 'products' %}?sub_category={{ wish.product.sub_category.name }}">
+                                    {{ wish.product.sub_category.friendly_name }}
+                                </a>
+                            </span>
+                            {% if wish.product.brand %}
+                            <a href="{% url 'products' %}?brand={{ wish.product.brand.name }}">
+                                <span class="icon">
+                                    <i class="fa-solid fa-tags"></i>
+                                </span>
+                                {{ wish.product.brand.friendly_name }}
+                            </a>
                             {% else %}
-                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" class="p-4">
+                            <span>&nbsp;</span>
                             {% endif %}
                         </div>
-                        <div class="product-text">
-                            <h5 class="mb-1">{{ product.name }}</h5>
-                            <p class="mb-1">£{{ product.price|floatformat:2 }}</p>
-                        </div>
-                    </a>
-                    <div class="category-links">
-                        <span>
-                            <a href="{% url 'products' %}?category={{ product.sub_category.category.name }}">
-                                {{ product.sub_category.category.friendly_name }}
-                            </a> / 
-                            <a href="{% url 'products' %}?sub_category={{ product.sub_category.name }}">
-                                {{ product.sub_category.friendly_name }}
-                            </a>
-                        </span>
-                        {% if product.brand %}
-                        <a href="{% url 'products' %}?brand={{ product.brand.name }}">
-                            <span class="icon">
-                                <i class="fa-solid fa-tags"></i>
-                            </span>
-                            {{ product.brand.friendly_name }}
-                        </a>
-                        {% else %}
-                        <span>&nbsp;</span>
-                        {% endif %}
                     </div>
                 </div>
+                {% empty %}
+                <div class="col-12 d-flex flex-column align-items-center justify-content-center">
+                    <p>You have no items in your wish list.</p>
+                    <a href="{% url 'products' %}" class="btn btn-accent my-2">
+                        <span class="icon">
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        All Products
+                    </a>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 </div>
