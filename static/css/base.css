@@ -264,6 +264,7 @@ h5 {
 
 /* ---------- PRODUCTS.HTML ---------- */
 .product-container {
+    position: relative;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
@@ -320,6 +321,11 @@ h5 {
 .btt-btn:not(:disabled):not(.disabled):active {
     border: 2px solid #FFFAEB;
     background-color: #5a5450;
+}
+
+.wish-list {
+    position: absolute;
+    z-index: 99;
 }
 
 /* ---------- PRODUCT_DETAIL.HTML ---------- */

@@ -4,11 +4,10 @@ from django_countries.fields import CountryField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from products.models import Product
+
 
 class UserProfile(models.Model):
-    """
-    View for user profile with order history and default information
-    """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     default_phone_number = models.CharField(max_length=20, null=True, blank=True)
     default_street_address_1 = models.CharField(max_length=40, null=True, blank=True)
@@ -29,3 +28,8 @@ def create_or_update_profile(sender, instance, created, **kwargs):
         UserProfile.objects.create(user=instance)
     # For existing users, save the profile
     instance.userprofile.save()
+
+
+class WishList(models.Model):
+    user = models.ForeignKey(User, null=False, blank=False, on_delete=models.CASCADE, related_name='user')
+    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
