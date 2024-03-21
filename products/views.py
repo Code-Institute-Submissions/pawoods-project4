@@ -14,17 +14,18 @@ def all_products(request):
     sub_categories = SubCategory.objects.all()
     brands = Brand.objects.all()
 
-    try:
-        profile = UserProfile.objects.get(user=request.user)
-        wish_list = list(profile.wishlist.all().values_list('product', flat=True))
-    except UserProfile.DoesNotExist:
-        profile = None
-        wish_list = None
+    if request.user.is_authenticated:
+        try:
+            profile = UserProfile.objects.get(user=request.user)
+            wish_list = list(profile.wishlist.all().values_list('product', flat=True))
+        except UserProfile.DoesNotExist:
+            profile = None
+            wish_list = None
 
-    for product in products:
-        if product.id in wish_list:
-            product.is_liked = True
-            print(product.is_liked)
+        for product in products:
+            if product.id in wish_list:
+                product.is_liked = True
+                print(product.is_liked)
 
     query = None
     category = None
