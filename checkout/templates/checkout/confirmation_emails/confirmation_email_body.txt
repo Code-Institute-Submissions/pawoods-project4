@@ -1,0 +1,21 @@
+Hello {{ order.first_name }} {{ order.last_name }},
+
+This is a confirmation email from Pencil + Paper, please see details below:
+
+Order Number: {{ order.order_number }}
+Date:  {{ order.date }}
+Total: {{ order.total }}
+
+Shipping Address:
+{{ order.street_address_1 }}
+{{ order.town_or_city }}
+{{ order.country }}
+{{ order.postcode }}
+
+Phone Number: {{ order.phone_number }}
+
+If you have any queries on your order, please contact us on {{ contact_email }}
+
+Thank you for your order!
+
+Pencil + Paper
