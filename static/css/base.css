@@ -323,12 +323,18 @@ h5 {
     background-color: #5a5450;
 }
 
-.wish-list {
+.product-buttons {
     position: absolute;
     z-index: 99;
+    font-size: 1.5rem;
+    padding-left: 1rem;
 }
 
-.wish-list a:hover {
+.product-buttons .icon {
+    padding-bottom: 2rem;
+}
+
+.product-buttons a:hover {
     text-decoration: none;
     text-shadow: 0px 0px 10px #0D0D2F;
 }
@@ -341,6 +347,26 @@ h5 {
     color: rgb(198, 21, 207);
     text-decoration: none;
     text-shadow: 0px 0px 10px rgb(198, 21, 207);
+}
+
+.delete a {
+    color: #a50000;
+}
+
+.delete a:hover {
+    color: #a50000;
+    text-decoration: none;
+    text-shadow: 0px 0px 10px #a50000;
+}
+
+.edit a {
+    color: #2f6e5a;
+}
+
+.edit a:hover {
+    color: #2f6e5a;
+    text-decoration: none;
+    text-shadow: 0px 0px 10px #2f6e5a;
 }
 
 /* ---------- PRODUCT_DETAIL.HTML ---------- */
