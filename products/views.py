@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
@@ -25,7 +26,6 @@ def all_products(request):
         for product in products:
             if product.id in wish_list:
                 product.is_liked = True
-                print(product.is_liked)
 
     query = None
     category = None
@@ -112,3 +112,16 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
+
+@login_required
+def delete_product(request, product_id):
+    """ Delete the product using the id clicked on """
+    if not request.user.is_superuser:
+        messages.error(request, 'You do not have permission to delete products.')
+        return redirect(reverse('home'))
+
+    product = get_object_or_404(Product, pk=product_id)
+    product.delete()
+    messages.success(request, 'Product Deleted!')
+    return redirect(reverse('products'))

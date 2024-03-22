@@ -326,12 +326,12 @@ h5 {
 .product-buttons {
     position: absolute;
     z-index: 99;
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding-left: 1rem;
 }
 
 .product-buttons .icon {
-    padding-bottom: 2rem;
+    padding: 1rem 0;
 }
 
 .product-buttons a:hover {
