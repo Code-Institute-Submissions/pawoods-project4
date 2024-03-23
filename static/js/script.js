@@ -126,6 +126,18 @@ $(document).ready(function () {
     });
 
     // Handle link field required if button field populated
+    // On edit post page load
+    var button = $('#id_button')
+    var buttonVal = button.val();
+    console.log(buttonVal);
+    if(buttonVal != '') {
+        $('#id_link').attr('required', true);
+        $('#div_id_link').find('label').text('Link*');
+    } else {
+        $('#id_link').attr('required', false);
+        $('#div_id_link').find('label').text('Link');
+    }
+    // On update
     $('#id_button').change(function() {
         var button = $(this)
         var buttonVal = button.val();

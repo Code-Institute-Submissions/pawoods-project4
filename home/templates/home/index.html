@@ -33,6 +33,50 @@
                             {% if update.button %}{{ update.button }}{% else %}Go!{% endif %}
                         </a>
                         {% endif %}
+                        {% if request.user.is_superuser %}
+                        <div class="admin-options row d-flex justify-content-center">
+                            <div class="edit p-3 text-center">
+                                <a class="icon" href="{% url 'edit_update' update.id %}">
+                                    <i class="fa-solid fa-pen"></i>
+                                </a>
+                            </div>
+                            <div class="delete p-3 text-center">
+                                <a class="icon" data-toggle="modal" data-target="#confirm-remove-{{ update.id }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Delete Post Modal -->
+                <div class="modal fade" id="confirm-remove-{{ update.id }}" tabindex="-1" aria-labelledby="remove-modal-{{ update.id }}" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="remove-modal-{{ update.id }}">Confirm Remove</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to delete this post? This cannot be undone.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-accent" data-dismiss="modal">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </span>
+                                    Cancel
+                                </button>
+                                <a href="{% url 'delete_update' update.id %}" class="btn btn-dark remove" id="remove-{{ update.id }}">
+                                    Remove
+                                    <span class="icon">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
