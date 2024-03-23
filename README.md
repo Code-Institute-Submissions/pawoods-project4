@@ -79,6 +79,9 @@ I used [Font Awesome](https://fontawesome.com/) for all the icons on the site, u
 #### Page Feature Matrix
 #### User Feature Permissions
 ### Future Features
+
+- Add UI CRUD functionality for brands, categories and sub categories for admin users to update these classifications from the site rather than the django admin page.
+
 ## Languages and Technologies
 
 ## Testing
