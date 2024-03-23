@@ -17,8 +17,22 @@
                     </span>
                     Profile
                 </a>
-                {% endif %}
                 <div class="dropdown-divider"></div>
+                {% endif %}
+                {% if user.is_superuser %}
+                <a class="sub-menu dropdown-item" data-toggle="collapse" href="#category-options" role="button"
+                    aria-expanded="false" aria-controls="category-options">
+                    <span class="icon">
+                        <i class="fa-solid fa-caret-down"></i>
+                    </span>
+                    Store Admin
+                </a>
+                <div class="collapse" id="category-options">
+                    <a href="{% url 'add_product' %}" class="dropdown-item"><span class="spacer">Add Product</span></a>
+                    <a href="" class="dropdown-item"><span class="spacer">Add Update</span></a>
+                </div>
+                <div class="dropdown-divider"></div>
+                {% endif %}
                 <form method="GET" action="{% url 'products' %}">
                     <div class="input-group w-100">
                         <input class="form-control border rounded-0" type="text" name="q" placeholder="Search">
@@ -36,14 +50,14 @@
                     All Products
                 </a>
                 {% for category in categories %}
-                <a class="sub-menu dropdown-item" data-toggle="collapse" href="#category-options" role="button"
+                <a class="sub-menu dropdown-item" data-toggle="collapse" href="#{{ category.name }}-options" role="button"
                     aria-expanded="false" aria-controls="category-options">
                     <span class="icon">
                         <i class="fa-solid fa-caret-down"></i>
                     </span>
                     {{ category.friendly_name }}
                 </a>
-                <div class="collapse" id="category-options">
+                <div class="collapse" id="{{ category.name }}-options">
                     <a href="{% url 'products' %}?category={{ category.name }}" class="dropdown-item"><span class="spacer"></span>All {{ category.friendly_name }}</a>
                     {% for subcat in sub_categories %}
                     {% if subcat.category == category %}

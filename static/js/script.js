@@ -113,4 +113,15 @@ $(document).ready(function () {
         var details = $(this).closest('.order-line').find('.order-details')[0];
         $(details).toggleClass('hidden');
     })
+
+    // Validate price field on product forms
+    $('#id_price').change(function() {
+        var price = $(this)
+        var currentVal = parseInt($(price).val());
+        if(currentVal < 0.5) {
+            price.val(0.5)
+        } else if(currentVal > 9999.99) {
+            price.val(9999.99)
+        }
+    })
 });

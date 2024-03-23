@@ -70,7 +70,7 @@
                 {% endif %}
                 {% if request.user.is_superuser %}
                 <div class="edit">
-                    <a class="icon" href="">
+                    <a class="icon" href="{% url 'edit_product' product.id %}">
                         <i class="fa-solid fa-pen"></i>
                     </a>
                 </div>
