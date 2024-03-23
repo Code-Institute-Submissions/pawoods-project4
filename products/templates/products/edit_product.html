@@ -17,7 +17,13 @@
             <div class="container-fluid">
                 <form action="{% url 'edit_product' product.id %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ form | crispy }}
+                    {% for field in form %}
+                    {% if field.name != 'image' %}
+                    {{ field | as_crispy_field }}
+                    {% else %}
+                    {{ field }}
+                    {% endif %}
+                    {% endfor %}
                     <div class="row">
                         <div class="col-12 col-sm-6 order-sm-last text-center">
                             <button class="btn btn-dark my-2" type="submit">
@@ -28,12 +34,12 @@
                             </button>
                         </div>
                         <div class="col-12 col-sm-6 order-sm-first text-center">
-                            <button class="btn btn-accent my-2" type="reset">
+                            <a class="btn btn-accent my-2" href="{% url 'edit_product' product.id %}">
                                 <span class="icon">
                                     <i class="fas fa-close"></i>
                                 </span>
                                 Clear Form
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </form>
@@ -44,4 +50,13 @@
         </div>
     </div>
 </div>
+{% endblock %}
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $('#new-image').change(function() {
+        var file = $('#new-image')[0].files[0];
+        $('#filename').text(`Selected Image: ${file.name}`);
+    });
+</script>
 {% endblock %}

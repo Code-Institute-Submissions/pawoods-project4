@@ -558,6 +558,40 @@ textarea.stripe-style-input {
     height: 100px;
 }
 
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-control-label {
+    color: #5a5450;
+}
+
+.custom-checkbox .custom-control-label::before {
+    border-color: #5a5450;
+    color: #5a5450;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #5a5450;
+    border-color: #5a5450;
+    color: #5a5450;
+}
+
+.image-preview {
+    height: 96px;
+}
+
 @media (min-width: 576px) {
     .name-group {
         flex-direction: row;

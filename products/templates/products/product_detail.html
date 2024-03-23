@@ -93,10 +93,10 @@
                 </span>
             </a>
         </div>
-        {% endif %}
-        <div class="container-fluid d-flex d-md-none">
+        <div class="container-fluid d-block d-md-none">
             <hr class="w-50">
         </div>
+        {% endif %}
         {% if related_products %}
         <div class="col-12 col-md-6 {% if not product.brand %}offset-md-3{% endif %}">
             <h4>Related Products</h4>
@@ -135,9 +135,12 @@
                 </button>
             </div>
         </div>
+        <div class="container-fluid d-block d-md-none">
+            <hr class="w-50">
+        </div>
         {% endif %}
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid d-none d-md-block">
         <hr class="w-50">
     </div>
     <div class="container-fluid pb-3">
