@@ -2,20 +2,20 @@
 {% load static %} 
 {% block extra_title %} | Product Management{%endblock %} 
 {% block content %}
-<div class="container-fluid product-form">
+<div class="container-fluid update-form">
     <div class="row mb-2">
-        <!-- Product Form -->
+        <!-- Update Form -->
         <div class="col-12 col-md-6 offset-md-3">
             <div class="container-fluid text-center">
                 <h2 class="mt-2">Product Management</h2>
                 <hr class="w-50"/>
             </div>
             <div class="container-fluid text-center">
-                <h3 class="mt-2">Edit Product</h3>
+                <h3 class="mt-2">Add Product</h3>
                 <hr class="w-50"/>
             </div>  
             <div class="container-fluid">
-                <form action="{% url 'edit_product' product.id %}" method="POST" enctype="multipart/form-data">
+                <form action="{% url 'add_update' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
                     {% if field.name != 'image' %}
@@ -30,23 +30,20 @@
                                 <span class="icon">
                                     <i class="fas fa-rotate"></i>
                                 </span>
-                                Update Product
+                                Add Update
                             </button>
                         </div>
                         <div class="col-12 col-sm-6 order-sm-first text-center">
-                            <a class="btn btn-accent my-2" href="{% url 'edit_product' product.id %}">
+                            <button class="btn btn-accent my-2" type="reset">
                                 <span class="icon">
                                     <i class="fas fa-close"></i>
                                 </span>
                                 Clear Form
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
-        <!-- Order Summary -->
-        <div class="col-12 col-md-6">
         </div>
     </div>
 </div>

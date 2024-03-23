@@ -112,7 +112,7 @@ $(document).ready(function () {
         e.preventDefault();
         var details = $(this).closest('.order-line').find('.order-details')[0];
         $(details).toggleClass('hidden');
-    })
+    });
 
     // Validate price field on product forms
     $('#id_price').change(function() {
@@ -123,5 +123,19 @@ $(document).ready(function () {
         } else if(currentVal > 9999.99) {
             price.val(9999.99)
         }
-    })
+    });
+
+    // Handle link field required if button field populated
+    $('#id_button').change(function() {
+        var button = $(this)
+        var buttonVal = button.val();
+        console.log(buttonVal);
+        if(buttonVal != '') {
+            $('#id_link').attr('required', true);
+            $('#div_id_link').find('label').text('Link*');
+        } else {
+            $('#id_link').attr('required', false);
+            $('#div_id_link').find('label').text('Link');
+        }
+    });
 });

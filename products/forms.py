@@ -3,7 +3,6 @@ from .widgets import CustomClearableFileInput
 from .models import Product, Category, SubCategory, Brand
 
 
-
 class ProductForm(forms.ModelForm):
 
     class Meta:
