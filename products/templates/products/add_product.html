@@ -3,17 +3,39 @@
 {% block extra_title %} | Product Management{%endblock %} 
 {% block content %}
 <div class="container-fluid basket-items">
-    <div class="row">
+    <div class="row mb-2">
         <!-- Product Form -->
         <div class="col-12 col-md-6">
-            <div class="d-none d-md-block container-fluid text-center">
+            <div class="container-fluid text-center">
                 <h2 class="mt-2">Product Management</h2>
+                <hr class="w-50"/>
+            </div>
+            <div class="container-fluid text-center">
+                <h3 class="mt-2">Add Product</h3>
                 <hr class="w-50"/>
             </div>  
             <div class="container-fluid">
                 <form action="{% url 'add_product' %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
+                    <div class="row">
+                        <div class="col-12 col-sm-6 order-sm-last text-center">
+                            <button class="btn btn-dark my-2" type="submit">
+                                <span class="icon">
+                                    <i class="fas fa-rotate"></i>
+                                </span>
+                                Add Product
+                            </button>
+                        </div>
+                        <div class="col-12 col-sm-6 order-sm-first text-center">
+                            <button class="btn btn-accent my-2" type="reset">
+                                <span class="icon">
+                                    <i class="fas fa-close"></i>
+                                </span>
+                                Clear Form
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

@@ -452,14 +452,14 @@ legend {
 .StripeElement,
 .stripe-style-input {
     box-sizing: border-box;
-    height: 40px;
+    height: 42px;
     width: 100%;
-    margin: 0 0 0.5rem 0;
+    margin: 0 0 1rem 0;
     padding: 10px 12px;
     border: 1px solid transparent;
     border-radius: 5px;
     background-color: white;
-    box-shadow: 0 1px 3px 0 #e6ebf1;
+    box-shadow: 0 1px 3px 0 #5a5450;
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;
 }
@@ -552,6 +552,12 @@ select option[value=""] {
     translate: unset;
 }
 
+/* ---------- ADD_PRODUCT.HTML ---------- */
+
+textarea.stripe-style-input {
+    height: 100px;
+}
+
 @media (min-width: 576px) {
     .name-group {
         flex-direction: row;
@@ -565,7 +571,7 @@ select option[value=""] {
 
 @media (min-width: 768px) {
     .order-history {
-        max-height: 428px;
+        max-height: 530px;
         overflow-y: auto;
     }
 }
