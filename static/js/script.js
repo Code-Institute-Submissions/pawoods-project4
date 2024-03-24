@@ -141,7 +141,6 @@ $(document).ready(function () {
     $('#id_button').change(function() {
         var button = $(this)
         var buttonVal = button.val();
-        console.log(buttonVal);
         if(buttonVal != '') {
             $('#id_link').attr('required', true);
             $('#div_id_link').find('label').text('Link*');

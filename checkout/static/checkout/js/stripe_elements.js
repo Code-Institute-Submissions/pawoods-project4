@@ -89,7 +89,7 @@ form.addEventListener('submit', function (ev) {
                     state: $.trim(form.county.value),
                 }
             },
-        }).then(function (result) {
+        }).then(function(result) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
@@ -100,15 +100,16 @@ form.addEventListener('submit', function (ev) {
                 $(errorDiv).html(html);
                 $('#payment-form').fadeToggle(100);
                 $('#loading-overlay').fadeToggle(100);
-                card.update({ 'disabled': false });
+                card.update({ 'disabled': false});
                 $('#submit-button').attr('disabled', false);
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();
+                    console.log("test log")
                 }
             }
         });
-    }).fail(function () {
+    }).fail(function() {
         // reload the page with error in django messages
         location.reload();
     });
