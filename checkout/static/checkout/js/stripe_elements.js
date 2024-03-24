@@ -60,7 +60,7 @@ form.addEventListener('submit', function (ev) {
         'last_name': lastName,
     };
     var url = '/checkout/cache_checkout_data/';
-    console.log("test log")
+
     $.post(url, postData).done(function() {
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
