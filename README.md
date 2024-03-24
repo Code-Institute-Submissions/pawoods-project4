@@ -124,7 +124,16 @@ Superuser is created
 
 ### Requirements and Settings
 ### database
+Follow CodeInstitute internal tool link for creating a database, copy URL from confirmation email to use in Heroku Environment Variables.
+Also update in the settings.py file of the project, commenting out the dev environment section. 
+run show migrations command to check the new database has been connected and then make the migrations and load data from fixtures, taking case to pay attention to the order; Categories, subcategories, brands, products, updates.
+create superuser
+delete database variable from the settings.py file and uncomment the original local setting.
+
 ### Heroku
+Creat app as previously, connect through github to the repo from which you want to build the app. 
+Add config vars of Stripe; STRIPE_WH_SECRET, STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY and DATABASE_URL for the db created in the last section.
+
 ### Stripe
 Sign up for account
 verify account from account verification email
