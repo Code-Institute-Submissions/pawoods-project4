@@ -138,6 +138,7 @@ From the terminal - Heroku login - confirm in browser
 heroku confi:set DISABLE_COLLECTSTATIC = 1 --app herokuappname
 Add heroku app name to ALLOWED_HOSTS variable in settings.py
 commit and push changes and then push to heroku with git push heroku main - initialise the app if created on the website with heroku git:remote -a herokuappname
+generate a django secret key, save to the confi vars in heroku as SECRET_KEY and change the settings.py file to get from the environment and default to empty string
 
 
 ### Stripe
