@@ -45,7 +45,8 @@ form.addEventListener('submit', function (ev) {
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
-    var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    var saveInfo = $('#id-save-info').is('checked');
+    console.log(saveInfo);
     var firstName = $('#id_first_name').val();
     var lastName = $('#id_last_name').val();
 
@@ -59,7 +60,7 @@ form.addEventListener('submit', function (ev) {
         'last_name': lastName,
     };
     var url = '/checkout/cache_checkout_data/';
-
+    console.log("test log")
     $.post(url, postData).done(function() {
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -105,7 +106,6 @@ form.addEventListener('submit', function (ev) {
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
                     form.submit();
-                    console.log("test log")
                 }
             }
         });
