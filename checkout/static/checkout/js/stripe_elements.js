@@ -46,7 +46,6 @@ form.addEventListener('submit', function (ev) {
     $('#loading-overlay').fadeToggle(100);
 
     var saveInfo = $('#id-save-info').is('checked');
-    console.log(saveInfo);
     var firstName = $('#id_first_name').val();
     var lastName = $('#id_last_name').val();
 
