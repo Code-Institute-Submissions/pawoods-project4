@@ -128,11 +128,17 @@ Follow CodeInstitute internal tool link for creating a database, copy URL from c
 Also update in the settings.py file of the project, commenting out the dev environment section. 
 run show migrations command to check the new database has been connected and then make the migrations and load data from fixtures, taking case to pay attention to the order; Categories, subcategories, brands, products, updates.
 create superuser
-delete database variable from the settings.py file and uncomment the original local setting.
+add if statement to settings.py to check if 'DATABASE_URL' in os.environ and if so, use the DATABASE_URL variable from the environiment.
+
 
 ### Heroku
 Creat app as previously, connect through github to the repo from which you want to build the app. 
 Add config vars of Stripe; STRIPE_WH_SECRET, STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY and DATABASE_URL for the db created in the last section.
+From the terminal - Heroku login - confirm in browser
+heroku confi:set DISABLE_COLLECTSTATIC = 1 --app herokuappname
+Add heroku app name to ALLOWED_HOSTS variable in settings.py
+commit and push changes and then push to heroku with git push heroku main - initialise the app if created on the website with heroku git:remote -a herokuappname
+
 
 ### Stripe
 Sign up for account
