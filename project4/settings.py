@@ -33,7 +33,6 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['project-4-pawoods-21f8fc070c89.herokuapp.com', '8000-pawoods-project4-7virwu35hg.us1.codeanyapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -208,21 +207,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Stripe
 STRIPE_CURRENCY = 'gbp'
-
-if os.path.exists('env.py'):
-    STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
-    STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
-    STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
-else:
-    STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
-    STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
-    STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '') 
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '') 
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'pencilandpaper@example.com'
 else:
-    EMAIL_BACKEND = 'django.core.mail.backends.setup.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
     EMAIL_HOST = 'smtp.gmail.com'
