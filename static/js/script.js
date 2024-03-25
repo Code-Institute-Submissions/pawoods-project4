@@ -129,7 +129,7 @@ $(document).ready(function () {
     // On edit post page load
     var button = $('#id_button')
     var buttonVal = button.val();
-    console.log(buttonVal);
+
     if(buttonVal != '') {
         $('#id_link').attr('required', true);
         $('#div_id_link').find('label').text('Link*');

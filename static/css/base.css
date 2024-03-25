@@ -592,6 +592,11 @@ textarea.stripe-style-input {
     height: 96px;
 }
 
+/* ---------- ALLAUTH TEMPLATE OVERRIDE ---------- */
+.allauth-content .control-group {
+    padding-bottom: 1rem;
+}
+
 @media (min-width: 576px) {
     .name-group {
         flex-direction: row;
