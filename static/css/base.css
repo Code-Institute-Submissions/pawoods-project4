@@ -12,6 +12,13 @@ a {
     text-align: center;
 }
 
+a.light {
+    color: #FFFAEB;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
 a:hover {
     color: #5a5450;
 }
@@ -159,6 +166,10 @@ h5 {
     right: 10px;
     z-index: 999999999;
     max-width: 90vw;
+}
+
+.social-links a {
+    font-size: xx-large;
 }
 
 /* ---------- NAV-MENU.HTML ---------- */

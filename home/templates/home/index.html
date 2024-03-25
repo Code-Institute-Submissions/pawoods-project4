@@ -7,6 +7,24 @@
         <div class="main">
             <h1>About Us</h1>
             <p>A paragraph about us</p>
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2 text-center">
+                    <a href="{% url 'products' %}" class="btn btn-dark remove m-2" id="remove-{{ update.id }}">
+                        All Products 
+                        <span class="icon">
+                            <i class="fas fa-chevron-right"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-12 col-md-8 offset-md-2 text-center">
+                    <a href="{% url 'account_signup' %}" class="btn btn-accent m-2">
+                        Register
+                        <span class="icon">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 

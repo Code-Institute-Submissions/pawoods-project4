@@ -16,8 +16,6 @@ Link to live site
             -   [Icons](#icons)
 -   [Features](#features)
     -   [Current Features](#current-features)
-        -   [Page Features Matrix](#page-features-matrix)
-        -   [User Feature Permissions](#user-features-permissions)
     -   [Future Features](#future-features)
 -   [Languages and Technologies](#languages-and-technologies)
 -   [Testing](#testing)
@@ -25,11 +23,8 @@ Link to live site
         -   [Fixed Bugs](#fixed-bugs)
         -   [Unfixed Bugs](#unfixed-bugs)
 -   [Deployment](#deployment)
-    -   [Live Deployment](#live-deployment)
     -   [Local Deployment](#local-deployment)
-    -   [Requirements and settings](#requirements-and-settings)
-    -   [Database](#database)
-    -   [Heroku](#heroku)
+    -   [Live Deployment](#live-deployment)
 -   [Credits](#credits)
     -   [Code Credits](#code-credits)
     -   [Support Credits](#support-credits)
@@ -44,12 +39,14 @@ The first part of the planning process was to develop the suer stories that woul
     - Be able to add products to a basket, update or remove if needed and checkout quickly and simply as a guest user.
 2. Registered user - I should...
     - Be able to find a sign in page that makes returning to the site quick and simple.
-    - See my details on a profile page, including personal, saved shipping information and previous orders.
-    - Be able to update my details from the profile page.
+    - Be able to like products with a click and see feedback to denote my liked products on the product page.
+    - See my details on a profile page, including personal, saved shipping information, previous orders and wish list items.
+    - Be able to update my details from the profile page, including removing liked products from my wishlist.
     - Be able to add products to a basket, update or remove if needed and checkout, either adding or retrieving saved details from my profile.
 3. Site admin - I should...
     - Find options to edit site contents in the menu/profile.
-    - Be able to update products, brands, categories and updates from the site interface.
+    - Be able to update products and updates from the site interface as well as product classifications, users and orders through the django admin interface.
+
 ### Design
 #### Wireframes
 ➕➕➕➕➕
@@ -76,13 +73,40 @@ I used [Font Awesome](https://fontawesome.com/) for all the icons on the site, u
 ➕➕➕➕➕Icon Images➕➕➕➕➕
 ## Features
 ### Current Features
-#### Page Feature Matrix
-#### User Feature Permissions
+
+➕➕➕➕➕
+
 ### Future Features
 
 - Add UI CRUD functionality for brands, categories and sub categories for admin users to update these classifications from the site rather than the django admin page.
+- Add a Contact Form using the email feedback system integrated with the order confirmation.
+- Add messages set through the Contact Form to the relevant user profiles and allow admin access to view all messages.
 
 ## Languages and Technologies
+
+| Language/Technology | Use/location in Project                                                                                                                                                                                                                |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTML                | Used to build templates for all pages on site                                                                                                                                                                                          |
+| CSS                 | Used to customise materialize styling on all elements                                                                                                                                                                                  |
+| JavaScript          | Used to initialize Bootstrap elements, handle qty selection buttons in product detail and basket templates and price selection on product add page                                                                                     |
+| Python              | Used for majority of logic on site, processing data between database and front end                                                                                                                                                     |
+| CI DB Tool             | Storing data entered by users                                                                                                                                                                                                          |
+| Django               | Used to create views, urls, templates and static files housing majority of python logic                                                                                                                                                               |
+| Django Templates               | Used to template front end sites, using loops over lists and if statements to check user status                                                                                                                                        |
+| Codeanywhere        | Used as the dev environment for the project                                                                                                                                                                      |
+| Git        | Used for version control within development environment                                                                                                                                                                      |
+| GitHub        | Used to store project repo                                                                                                                                                                      |
+| Heroku              | Used to deploy the live site                                                                                                                                                                                                           |
+| Bootstrap         | Used for many individual elements; menu, accordion, cards, reveal elements, modals, tooltipped elements and action buttons. Also used for basic styling with helper classes for colour, button size, element positioning and size etc. |
+| Google Fonts        | Used for site fonts;                                                                                                                                                                                          |
+| Font Awesome        | Used for icons within the menu element                                                                                                                                                                                                 |
+| Favicon             | Used for site favicon                                                                                                                                                                                                                  |
+|Code Institute Python Linter | Used to test the app.py file for Pep8 compliance |
+|W3 HTML Validator| Used to test all HTML files|
+|W3 CSS Validator|Used to test CSS file|
+|JsHint|Used to Test JavaScript File|
+|Chrome Dev Tools|Used as primary browser during development|
+|Lighthouse (Chrome)|Used to check code standards|
 
 ## Testing
 
@@ -107,23 +131,67 @@ For all manual user testing, lighthouse performance testing and code validation,
 
 #### Unfixed Bugs
 ## Deployment
-### Live Deployment
+
+The site was deployed to [Heroku](https://www.heroku.com/platform). View the live site [here!](➕➕➕➕➕)
+
 ### Local Deployment
 
-local environment
+To access this [GitHub Repository](https://github.com/pawoods/project4) locally, you can follow the below guides to either clone or fork the repo.
 
-pip3 install -r requirements.txt
-add host to allowed hosts
+#### Cloning
+
+Cloning this repository will pull down a full copy to a local computer or remote virtual machine within a codespace. You can then `push` or `pull` your own or other users changes to the original repo. To clone this repo, follow the below step by step instructions:
+
+1. Navigate to the [GitHub Repository](https://github.com/pawoods/project4) for this project.
+2. Click the `<> Code` button above the list of files.
+3. Chose whether to clone using HTTPS, SSH, or GitHub CLI and copy the URL.
+4. Open Git Bash or Terminal.
+5. Change the current working directory to the location where you want the cloned repo.
+6. Use the `git clone` command followed by the copied URL.
+   ```
+   git clone https://github.com/pawoods/project4.git
+   ```
+7. Press enter to create your local clone.
+
+#### Forking
+
+Forking this repository will create a parallel version in your own GitHub account, allowing changes to be made with no change to the original repo. To fork this repo, follow the below step by step instructions:
+
+1. Navigate to the [GitHub Repository](https://github.com/pawoods/project4) for this project.
+2. Click `Fork` button in top right under main navigation bar.
+3. A copy of this repo should now exist in your GitHub account.
+
+#### Requirements and env
+
+After cloning or forking the repo, the dependancies within the requirements.txt need to be installed using the command `pip3 install -r requirements.txt`
+
+Any other packages installed in the project after cloning or forking the repo can be added to the requirements.txt file by using the command `pip3 freeze --local > requirements.txt`
+
+An `env.py` file will also need to be created at root-level to contain environment variables that should not be pushed to GitHub, the `env.py` file is listed in the `.gitignore` file to ensure this.
+
+### Local Django Setup
+
+To set up Django, once instilled, you will need to allow your local host by adding the host url to the `ALLOWED_HOSTS` Variable in the settings.py file.
+
+You will then need to migrate the models and fixtures to the local db by following the commands below:
+
+```
+python3 manage.py makemigrations --dry-run
+python3 manage.py makemigrations
+python3 manage.py migrate --plan
 python3 manage.py migrate
 python3 manage.py createsuperuser
 - Enter username
 - Enter email address
 - Enter Password
 - Confirm Password
-Superuser is created
+Superuser is created`
+```
+The data in the fixtures will then need to be loaded with the command `python3 manage.py loaddata --fixture name` taking care to add the Categories and brands first, followed by the subcategories, products and updates/posts.
 
-### Requirements and Settings
-### database
+### Live Deployment
+
+#### Database
 Follow CodeInstitute internal tool link for creating a database, copy URL from confirmation email to use in Heroku Environment Variables.
 Also update in the settings.py file of the project, commenting out the dev environment section. 
 run show migrations command to check the new database has been connected and then make the migrations and load data from fixtures, taking case to pay attention to the order; Categories, subcategories, brands, products, updates.
@@ -131,23 +199,35 @@ create superuser
 add if statement to settings.py to check if 'DATABASE_URL' in os.environ and if so, use the DATABASE_URL variable from the environiment.
 
 
-### Heroku
+#### Heroku
 Creat app as previously, connect through github to the repo from which you want to build the app. 
 Add config vars of Stripe; STRIPE_WH_SECRET, STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY and DATABASE_URL for the db created in the last section.
 From the terminal - Heroku login - confirm in browser
 heroku confi:set DISABLE_COLLECTSTATIC = 1 --app herokuappname
 Add heroku app name to ALLOWED_HOSTS variable in settings.py
 commit and push changes and then push to heroku with git push heroku main - initialise the app if created on the website with heroku git:remote -a herokuappname
-generate a django secret key, save to the confi vars in heroku as SECRET_KEY and change the settings.py file to get from the environment and default to empty string
+generate a django secret key, save to the config vars in heroku as SECRET_KEY and change the settings.py file to get from the environment and default to empty string
+once deployed, you will need to set development to tru in the development environemt, either through environment variables or exporting the variable
 
 
-### Stripe
+#### Stripe
 Sign up for account
 verify account from account verification email
 click developers option and API Keys tab to find stripe public key and secret key
 - These can be saved in environemt variable in a developement environment on in an env.py file, within the environment, they can also be exported using the command export ~VARIABLE NAME~=~kay value~
 - Run server in the development environment and copy the URL
 - in the Webhooks tabs in stripe, click add enpoint, paste the environment URL in and select all events. Once created, the signing secret can be revealed and copdied into the environment with the export command or directly into environment variable as STRIPE_WH_SECRET
+
+#### AWS
+Sign up for account on free tier
+navigate to the S3 product and create a new bucket, mimicking the name of the project for ease of use.
+
+
+#### Email
+To connect to real emails, you will need to connect to an email account and create and app password, for this project, I have done this with Gmail as outlined in the steps below: 
+Sign into Gmail or sign up for afree account. 
+Access the settings mennu and set up 2-Step verification
+Once completed, you can access a setting to create App Passwords, which can be added to the environment variables along with the email account which will then be picked up by the settings in settings.py (Gmail)
 
 ## Credits
 
@@ -160,3 +240,7 @@ List specific field of query set - [Reddit](https://www.reddit.com/r/django/comm
 Redirect to page that requested a view - [Reddit](https://www.reddit.com/r/django/comments/c54ycv/how_to_conditionally_redirect_a_django_view/) - NotSelfAware
 
 ### Support Credits
+
+I would like to thank my cohort, including cohort leads, Amy, Irene and Iris for their support over the entire course and expesically during the challenging times with CodeAnywhere and other issues along this journey. 
+
+My mentor Martina has also been a huge support throughout the course and has kept me on track when issues have arisen within the projects. 
