@@ -1,7 +1,7 @@
 # Pencil + Paper
 Pencil + Paper is an online retail store, selling a range of art and stationery supplies to consumers. The site allows the consumers the ability to see a range of products from different categories and brands, place orders, register and maintain a profile with the site and see updates posted by the store.
 
-![Am I Responsive Screenshot](/media/readme/noimage.webp)
+![Am I Responsive Screenshot](/media/readme/amiresponsive.webp)
 
 View live site [here!](https://project-4-pawoods-21f8fc070c89.herokuapp.com/)
 ## Table of Contents
@@ -45,36 +45,45 @@ The first part of the planning process was to develop the suer stories that woul
     - Be able to add products to a basket, update or remove if needed and checkout, either adding or retrieving saved details from my profile.
 3. Site admin - I should...
     - Find options to edit site contents in the menu/profile.
-    - Be able to update products and updates from the site interface as well as product classifications, users and orders through the django admin interface.
+    - Be able to update products from the site interface.
+    - Be able to update posts from the site interface.
+    - Have a lin kto access the django admin panel.
+    - Have full CRUD functionality of all model objects from the django admin panel.
 
 ### Design
 #### Wireframes
-➕➕➕➕➕
+
 For all wireframes, including mobile, tablet and desktop views, please see [WIREFRAMES.md](WIREFRAMES.md) file.
-➕➕➕➕➕
+
+
 #### Data Design
 Using a relational database for this project, it was important to design the data from the outset to ensure every element interacted correctly with those it needed to as well as giving the users the best experience of the site.
 I drew up the data structure early on in the project to keep in mind when developing so as to avoid having to go back and make changes once everything was up and running. I used the base Boutique Ado walkthrough project as a starting point and then build custom models on top of this to enhance the site.
 
-➕➕➕➕➕
-Lucid chart screenshot
-➕➕➕➕➕
+![Data Model Design](/media/readme/modeldatabase.webp)
 
 #### Visual Design
 ##### Colours
-I used [coolors](https://coolors.co/) to design my colour palette, I wanted to keep the majority of the site light in colour to give a clean and simple look while using some darker accent colours for the text, footer, menu and buttons. This was the palette I settled on as it gave a good contrast between the light and dark colours while not being visually overwhelming for the user.
+I used [coolors](https://coolors.co/) to design my colour palette, I wanted to keep the majority of the site light in colour to give a clean and simple look while using some darker accent colours for the text, footer, menu and buttons. This was the palette I settled on as it gave a good contrast between the light and dark colours while not being visually overwhelming for the user. To add additional colours to the site, I used the alpha values in colours to simply darken or lighten depending on the theme of the element.
 
-➕➕➕➕➕Coolors image➕➕➕➕➕
+![Coolors Image](/media/readme/coolors.webp)
 
 ##### Fonts
 I used [Google Fonts](https://fonts.google.com/) for the fonts on the site, choosing to user one font for the logo and page/section headers and another for the majority of the text on the site. Using sample text for the site, I settled on Nunito for the main site text and smaller headers and PT Serif for the Site logo and larger headers:
 
-➕➕➕➕➕Fonts Image➕➕➕➕➕
+PT Serif
+
+![PT Serif Imge](/media/readme/ptserif.webp)
+
+Nunito
+
+![Nunito Image](/media/readme/nunito.webp)
 
 ##### Icons
 I used [Font Awesome](https://fontawesome.com/) for all the icons on the site, using them to draw the attention of the user either to a navigation or CTA element or to important areas of information, brand labels, payment information etc.
 
-➕➕➕➕➕Icon Images➕➕➕➕➕
+![Icons Image](/media/readme/icons.webp)
+
 ## Features
 
 Before developing the project, i made a list of the features i wanted to include and ordered them from most to least essential for the design brief, below are the features split into current and future sections:
@@ -121,7 +130,7 @@ Before developing the project, i made a list of the features i wanted to include
 | Google Fonts        | Used for site fonts;                                                                                                                                                                                          |
 | Font Awesome        | Used for icons within the menu element                                                                                                                                                                                                 |
 | Favicon             | Used for site favicon                                                                                                                                                                                                                  |
-|Code Institute Python Linter | Used to test the app.py file for Pep8 compliance |
+|Code Institute Python Linter | Used to test for Pep8 compliance |
 |W3 HTML Validator| Used to test all HTML files|
 |W3 CSS Validator|Used to test CSS file|
 |JsHint|Used to Test JavaScript File|
@@ -152,7 +161,7 @@ For all manual user testing, lighthouse performance testing and code validation,
 #### Unfixed Bugs
 ## Deployment
 
-The site was deployed to [Heroku](https://www.heroku.com/platform). View the live site [here!](➕➕➕➕➕)
+The site was deployed to [Heroku](https://www.heroku.com/platform). View the live site [here!](https://project-4-pawoods-21f8fc070c89.herokuapp.com)
 
 ### Local Deployment
 
@@ -188,6 +197,12 @@ After cloning or forking the repo, the dependancies within the requirements.txt 
 Any other packages installed in the project after cloning or forking the repo can be added to the requirements.txt file by using the command `pip3 freeze --local > requirements.txt`
 
 An `env.py` file will also need to be created at root-level to contain environment variables that should not be pushed to GitHub, the `env.py` file is listed in the `.gitignore` file to ensure this.
+
+If you are using an IDE such as GitPod or Code Anywhere, these environment variables call also be saved on the account or exported in the command line as seen below:
+
+```
+export VARIABLE_NAME=variable_value
+```
 
 ### Local Django Setup
 
@@ -234,7 +249,10 @@ once deployed, you will need to set development to tru in the development enviro
 Sign up for account
 verify account from account verification email
 click developers option and API Keys tab to find stripe public key and secret key
-- These can be saved in environemt variable in a developement environment on in an env.py file, within the environment, they can also be exported using the command export ~VARIABLE NAME~=~kay value~
+- These can be saved in environemt variable in a developement environment on in an env.py file, within the environment, they can also be exported using the command 
+```
+export VARIABLE_NAME=variable_value
+```
 - Run server in the development environment and copy the URL
 - in the Webhooks tabs in stripe, click add enpoint, paste the environment URL in and select all events. Once created, the signing secret can be revealed and copdied into the environment with the export command or directly into environment variable as STRIPE_WH_SECRET
 
