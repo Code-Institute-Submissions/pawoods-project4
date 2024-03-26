@@ -79,10 +79,12 @@ Nunito
 
 ![Nunito Image](/media/readme/nunito.webp)
 
+
 ##### Icons
 I used [Font Awesome](https://fontawesome.com/) for all the icons on the site, using them to draw the attention of the user either to a navigation or CTA element or to important areas of information, brand labels, payment information etc.
 
 ![Icons Image](/media/readme/icons.webp)
+
 
 ## Features
 
@@ -219,56 +221,77 @@ python3 manage.py makemigrations
 python3 manage.py migrate --plan
 python3 manage.py migrate
 python3 manage.py createsuperuser
-- Enter username
-- Enter email address
-- Enter Password
-- Confirm Password
-Superuser is created`
+Enter username
+Enter email address
+Enter Password
+Confirm Password
 ```
 The data in the fixtures will then need to be loaded with the command `python3 manage.py loaddata --fixture name` taking care to add the Categories and brands first, followed by the subcategories, products and updates/posts.
 
 ### Live Deployment
 
 #### Database
-Follow CodeInstitute internal tool link for creating a database, copy URL from confirmation email to use in Heroku Environment Variables.
-Also update in the settings.py file of the project, commenting out the dev environment section. 
-run show migrations command to check the new database has been connected and then make the migrations and load data from fixtures, taking case to pay attention to the order; Categories, subcategories, brands, products, updates.
-create superuser
-add if statement to settings.py to check if 'DATABASE_URL' in os.environ and if so, use the DATABASE_URL variable from the environiment.
+To create the live database, I followed the steps below:
+
+1. Follow CodeInstitute internal tool link for creating a database, copy URL from confirmation email to use in Heroku Environment Variables.
+2. Update database URL in the settings.py file of the project, add if statement to check if 'DATABASE_URL' in os.environ and if so, use the DATABASE_URL variable from the environiment.
+3. Run show migrations command to check the new database has been connected (all migrations should show as needing to be made) and then make the migrations and load data from fixtures, taking case to pay attention to the order; Categories, subcategories, brands, products, updates.
+4. Create superuser with the method previously shown, this time for the live environment.
 
 
 #### Heroku
-Creat app as previously, connect through github to the repo from which you want to build the app. 
-Add config vars of Stripe; STRIPE_WH_SECRET, STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY and DATABASE_URL for the db created in the last section.
-From the terminal - Heroku login - confirm in browser
-heroku confi:set DISABLE_COLLECTSTATIC = 1 --app herokuappname
-Add heroku app name to ALLOWED_HOSTS variable in settings.py
-commit and push changes and then push to heroku with git push heroku main - initialise the app if created on the website with heroku git:remote -a herokuappname
-generate a django secret key, save to the config vars in heroku as SECRET_KEY and change the settings.py file to get from the environment and default to empty string
-once deployed, you will need to set development to tru in the development environemt, either through environment variables or exporting the variable
+To deploy your app on [Heroku](https://www.heroku.com/platform), these are the steps to follow: 
+
+1. Sign up for an account with Heroku.
+2. Click New button and select Create New App.
+3. Choose a name for your app. This must be unique.
+4. Select a region and click Create App.
+5. Choose your connection method, I used automatic deployment from GitHub repo. 
+6. Make sure your GitHub profile is displayed and search for the repository. You may need to connect to your GitHub account if not completed at registration.
+7. Once the repo is found, click connect.
+8. Navigate to Settings tab and click on Reveal Config Vars
+9. Add config vars of Stripe; STRIPE_WH_SECRET, STRIPE_PUBLIC_KEY, STRIPE_SECRET_KEY and DATABASE_URL for the db created in the last section.
+10. From the terminal - Heroku login - confirm in browser
+11. `heroku confi:set DISABLE_COLLECTSTATIC = 1 --app herokuappname` to prevent the following commit and push from attempting to pick up static files as we are not yet set up with AWS for storage.
+12. Add heroku app name to ALLOWED_HOSTS variable in settings.py
+13. Commit and push changes and then push to heroku with `git push heroku main` - initialise the app if created on the website with `heroku git:remote -a herokuappname`
+14. Generate a django secret key, save to the config vars in heroku as SECRET_KEY and change the settings.py file to get from the environment and default to empty string
+15. Once deployed, you will need to set development to true in the development environemt, either through environment variables or exporting the variable with `export DEVELOPMENT=True`
+16. Once all config vars are added, you can now navigate back to the deploy tab and click Enable Automatic Deploys, select the branch to deploy and click Deploy.
+17. Once complete, you can click Open App to view the live site.
+- NOTE: The live site will now update any time changes are pushed to the connected GitHub repository.
 
 
 #### Stripe
-Sign up for account
-verify account from account verification email
-click developers option and API Keys tab to find stripe public key and secret key
-- These can be saved in environemt variable in a developement environment on in an env.py file, within the environment, they can also be exported using the command 
+The following steps are those I used to connect to [Stripe](https://stripe.com/gb) for payments through the site:
+
+1. Sign up for account
+2. erify account from account verification email
+3. Click developers option and API Keys tab to find stripe public key and secret key
+4. These can be saved in environemt variable in a developement environment or in an env.py file within the environment, they can also be exported using the command 
 ```
 export VARIABLE_NAME=variable_value
 ```
-- Run server in the development environment and copy the URL
-- in the Webhooks tabs in stripe, click add enpoint, paste the environment URL in and select all events. Once created, the signing secret can be revealed and copdied into the environment with the export command or directly into environment variable as STRIPE_WH_SECRET
+6. Run server in the development environment and copy the URL
+7. in the Webhooks tabs in stripe, click add enpoint, paste the environment URL in and select all events. Once created, the signing secret can be revealed and copied into the environment with the export command or directly into environment variable as STRIPE_WH_SECRET
+
 
 #### AWS
-Sign up for account on free tier
-navigate to the S3 product and create a new bucket, mimicking the name of the project for ease of use.
+1. Sign up for account on free tier
+2. Navigate to the S3 product and create a new bucket, mimicking the name of the project for ease of use.
+3. Within this bucket, create a media/ folder to hold the initial media items for the site.
+4. Navigate to IAM to create a User Group, a policy relating to the User Group and a User to be put into the group.
+5. Once the user is created, you will need to download the CSV file with the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY values in, saving these to your live environment. 
+6. The bucket name and AWS region will alos need to be updated in the settings.py file to match the newly created AWS bucket.
+7. In your live environment, remove the config var for DISABLE_COLLECTSTATIC. On the next commit and push, AWS will pick up the static files.
 
 
 #### Email
-To connect to real emails, you will need to connect to an email account and create and app password, for this project, I have done this with Gmail as outlined in the steps below: 
-Sign into Gmail or sign up for afree account. 
-Access the settings mennu and set up 2-Step verification
-Once completed, you can access a setting to create App Passwords, which can be added to the environment variables along with the email account which will then be picked up by the settings in settings.py (Gmail)
+To connect to real emails, you will need to connect to an email account and create and app password, for this project, I have done this with Gmail as outlined in the steps below:
+1. Sign into Gmail or sign up for a free account. 
+2. Access the settings menu and set up 2-Step verification
+3. Once completed, you can access a setting to create App Passwords
+4. Once created, this can be added to the environment variables along with the email account which will then be picked up by the settings in settings.py (Gmail)
 
 ## Credits
 

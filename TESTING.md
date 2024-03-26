@@ -50,16 +50,15 @@ I used [W3 HTML Validator](https://validator.w3.org/) to validate all HTML files
 I used [W3 CSS Validator](https://jigsaw.w3.org/css-validator/validator) to validate the style.css file and received no errors.
 
 
-### JS 
-
-
+### JS ✅
+I used [JS Hint](https://jshint.com/) to validate my JavaScript code on all .js files within the project. I needed to start my files with `/*jshint esversion: 6 */` to make sure jshint would treat the code by the standards of ES6. Noted as warning were the use of vars and referenced out of scope. As this was from the walkthrough project and updating them to lets also threw a jshint error, I made the decision to keep them as vars to match the walkthrough.
 
 
 ### Python ✅
 products/widgets.py
 
 
-## Lighthouse
+## Lighthouse 
 
 
 
