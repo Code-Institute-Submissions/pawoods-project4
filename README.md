@@ -1,9 +1,9 @@
 # Pencil + Paper
 Pencil + Paper is an online retail store, selling a range of art and stationery supplies to consumers. The site allows the consumers the ability to see a range of products from different categories and brands, place orders, register and maintain a profile with the site and see updates posted by the store.
-➕➕➕➕➕
-Am I responsive Image
-Link to live site
-➕➕➕➕➕
+
+![Am I Responsive Screenshot](/media/readme/noimage.webp)
+
+View live site [here!](https://project-4-pawoods-21f8fc070c89.herokuapp.com/)
 ## Table of Contents
 -   [UX](#ux)
     -   [User Stories](#user-stories)
@@ -65,16 +65,36 @@ Lucid chart screenshot
 I used [coolors](https://coolors.co/) to design my colour palette, I wanted to keep the majority of the site light in colour to give a clean and simple look while using some darker accent colours for the text, footer, menu and buttons. This was the palette I settled on as it gave a good contrast between the light and dark colours while not being visually overwhelming for the user.
 
 ➕➕➕➕➕Coolors image➕➕➕➕➕
+
 ##### Fonts
-I used [Google Fonts](https://fonts.google.com/) for the fonts on the site, choosing to user one font for the logo and page/section headers and another for the majority of the text on the site. Using sample text for the site, I settled on ➕➕➕➕➕
+I used [Google Fonts](https://fonts.google.com/) for the fonts on the site, choosing to user one font for the logo and page/section headers and another for the majority of the text on the site. Using sample text for the site, I settled on Nunito for the main site text and smaller headers and PT Serif for the Site logo and larger headers:
+
+➕➕➕➕➕Fonts Image➕➕➕➕➕
+
 ##### Icons
 I used [Font Awesome](https://fontawesome.com/) for all the icons on the site, using them to draw the attention of the user either to a navigation or CTA element or to important areas of information, brand labels, payment information etc.
 
 ➕➕➕➕➕Icon Images➕➕➕➕➕
 ## Features
+
+Before developing the project, i made a list of the features i wanted to include and ordered them from most to least essential for the design brief, below are the features split into current and future sections:
+
 ### Current Features
 
-➕➕➕➕➕
+- Home page with information about the site/store
+- Nav menu element to compile all relevant links for the user
+- Ability to search products by keywords, or filter by brands, categories and sub categories
+- Product page with ability to sort and filter products
+- Product details page showing more in depth information on the products
+- Ability to select quantity pf product and add to basket
+- Basket view with option to update quantity and remove products, return to products or go to checkout
+- Checkout page with order summary and form to complete shipping and payment details
+- Order confirmation page with order details and a link to continue shopping
+- Profile page with ability to view and update details, view order history and wish list products
+- Update posts which could include new offers, ranges or store information
+- Ability to add and remove products to with list for signed in users
+- Admin option to add, update and remove products from the store with relevant form page
+- Admin option to add, update and remove update posts from the store with relevant form page
 
 ### Future Features
 

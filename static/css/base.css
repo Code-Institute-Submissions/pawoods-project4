@@ -273,6 +273,10 @@ h5 {
     opacity: 30%;
 }
 
+.carousel .admin-options a {
+    font-size: large;
+}
+
 /* ---------- PRODUCTS.HTML ---------- */
 .product-container {
     position: relative;

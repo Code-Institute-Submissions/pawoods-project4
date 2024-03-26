@@ -20,7 +20,7 @@
                 {% if product.image %}
                 <img src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.name }}" class="p-4">
                 {% else %}
-                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" class="p-4">
+                <img src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.name }}" class="p-4">
                 {% endif %}
             </div>
         </div>
@@ -111,7 +111,7 @@
                                     {% if rel_prod.image %}
                                     <img src="{{ MEDIA_URL }}{{ rel_prod.image }}" alt="{{ rel_prod.name }}">
                                     {% else %}
-                                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ rel_prod.name }}">
+                                    <img src="{{ MEDIA_URL }}noimage.webp" alt="{{ rel_prod.name }}">
                                     {% endif %}
                                 </div>
                                 <h5>{{ rel_prod.name }} - £{{ rel_prod.price }}</h5>
