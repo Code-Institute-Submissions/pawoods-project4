@@ -90,7 +90,8 @@ def all_products(request):
                                displaying all products")
                 return redirect(reverse('products'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) | Q(
+                description__icontains=query)
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -115,11 +116,14 @@ def product_detail(request, product_id):
     sub_category = product.sub_category
     related_products = None
     if brand:
-        related_products = Product.objects.filter(brand=brand, sub_category=sub_category).exclude(pk=product_id)
+        related_products = Product.objects.filter(
+            brand=brand, sub_category=sub_category).exclude(pk=product_id)
         if not related_products:
-            related_products = Product.objects.filter(sub_category=sub_category).exclude(pk=product_id)
+            related_products = Product.objects.filter(
+                sub_category=sub_category).exclude(pk=product_id)
     else:
-        related_products = Product.objects.filter(sub_category=sub_category).exclude(pk=product_id)
+        related_products = Product.objects.filter(
+            sub_category=sub_category).exclude(pk=product_id)
 
     context = {
         'product': product,
@@ -142,7 +146,8 @@ def add_product(request):
             messages.success(request, 'Product added successfully')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to add product, please check the form is valid')
+            messages.error(request, 'Failed to add product, \
+                           please check the form is valid')
 
     else:
         form = ProductForm()
@@ -159,7 +164,8 @@ def add_product(request):
 def edit_product(request, product_id):
     """ Edit product using the id clicked on """
     if not request.user.is_superuser:
-        messages.error(request, 'You do not have permission to delete products.')
+        messages.error(request,
+                       'You do not have permission to delete products.')
         return redirect(reverse('home'))
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
@@ -169,7 +175,8 @@ def edit_product(request, product_id):
             messages.success(request, 'Product updated successfully')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product, please check the form is valid')
+            messages.error(request, 'Failed to update product, \
+                           please check the form is valid')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}.')
@@ -187,7 +194,8 @@ def edit_product(request, product_id):
 def delete_product(request, product_id):
     """ Delete the product using the id clicked on """
     if not request.user.is_superuser:
-        messages.error(request, 'You do not have permission to delete products.')
+        messages.error(request,
+                       'You do not have permission to delete products.')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
