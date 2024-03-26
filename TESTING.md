@@ -45,17 +45,17 @@ The below tables detail the paths I followed on the site to test each of the use
 I used [W3 HTML Validator](https://validator.w3.org/) to validate all HTML files by URI, pasting each page into the address bar and checking to ensure no errors were found.
 
 
-### CSS
+### CSS ✅
 
 I used [W3 CSS Validator](https://jigsaw.w3.org/css-validator/validator) to validate the style.css file and received no errors.
 
 
-### JS
+### JS 
 
 
 
 
-### Python
+### Python ✅
 products/widgets.py
 
 

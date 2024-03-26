@@ -564,7 +564,6 @@ select option[value=""] {
 .order-history .dropdown-menu.show {
     float: unset;
     position: relative;
-    translate: unset;
 }
 
 /* ---------- ADD_PRODUCT.HTML ---------- */

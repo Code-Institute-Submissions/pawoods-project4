@@ -159,6 +159,9 @@ For all manual user testing, lighthouse performance testing and code validation,
 5. Bug found where stripe payment intent only holds a full name field where I am using first and last name - Fixed by adding the names individually to the payment intent metadata and concatenating both to form the shipping and billing name
 
 #### Unfixed Bugs
+
+Where an item is deleted and is the only item on an order, the order remains in the database but with a value of 0.00. With more time to fix, I would enter conditional statements to either delete or just not display orders with a 0 value
+
 ## Deployment
 
 The site was deployed to [Heroku](https://www.heroku.com/platform). View the live site [here!](https://project-4-pawoods-21f8fc070c89.herokuapp.com)

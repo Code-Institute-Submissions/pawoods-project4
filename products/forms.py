@@ -15,8 +15,8 @@ class ProductForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         sub_categories = SubCategory.objects.all()
-        sub_friendly_names =
-        [(c.id, c.get_friendly_name()) for c in sub_categories]
+        sub_friendly_names = [(
+            c.id, c.get_friendly_name()) for c in sub_categories]
 
         brands = Brand.objects.all()
         brand_friendly_names = [(b.id, b.get_friendly_name()) for b in brands]

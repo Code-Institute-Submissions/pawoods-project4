@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 $(document).ready(function () {
     // Open and close sublist menu accordions
     $('a.sub-menu').on("click", function (e) {
@@ -116,18 +117,18 @@ $(document).ready(function () {
 
     // Validate price field on product forms
     $('#id_price').change(function() {
-        var price = $(this)
+        var price = $(this);
         var currentVal = parseInt($(price).val());
         if(currentVal < 0.5) {
-            price.val(0.5)
+            price.val(0.5);
         } else if(currentVal > 9999.99) {
-            price.val(9999.99)
+            price.val(9999.99);
         }
     });
 
     // Handle link field required if button field populated
     // On edit post page load
-    var button = $('#id_button')
+    var button = $('#id_button');
     var buttonVal = button.val();
 
     if(buttonVal != '') {
@@ -139,7 +140,7 @@ $(document).ready(function () {
     }
     // On update
     $('#id_button').change(function() {
-        var button = $(this)
+        var button = $(this);
         var buttonVal = button.val();
         if(buttonVal != '') {
             $('#id_link').attr('required', true);
