@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Update
 from .forms import UpdateForm
 
+
 def index(request):
     """ Return the index page """
 
@@ -30,7 +31,9 @@ def add_update(request):
             messages.success(request, 'Post updated successfully')
             return redirect(reverse('home'))
         else:
-            messages.error(request, 'Failed to add post, please check the form is valid')
+            messages.error(request,
+                           'Failed to add post, \
+                           please check the form is valid')
     else:
         form = UpdateForm()
 
@@ -56,10 +59,12 @@ def edit_update(request, update_id):
             messages.success(request, 'Post updated successfully')
             return redirect(reverse('home'))
         else:
-            messages.error(request, 'Failed to update post, please check the form is valid')
+            messages.error(request, 'Failed to update post, \
+                           please check the form is valid')
     else:
         form = UpdateForm(instance=update)
-        messages.info(request, f'You are editing post with title: {update.title}.')
+        messages.info(request, f'You are editing \
+                      post with title: {update.title}.')
 
     template = 'home/update_update.html'
     context = {

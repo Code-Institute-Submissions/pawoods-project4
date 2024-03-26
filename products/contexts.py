@@ -1,5 +1,6 @@
 from .models import Category, SubCategory, Brand
 
+
 def menu_categories(request):
 
     categories = Category.objects.all()

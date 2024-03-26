@@ -1,10 +1,12 @@
 # Testing
 
 ## Manual Testing
+Manual testing was completed by myself as I developed the project, making sure I manually tested each component as it was added, I used Google Chrome Devtools to view the code from the browser alongside the rendered site.
 
+Once I had the full functionality up and running, I asked friends family and my Code Institute cohort to use the site as much as possible to see whether there were any UX ommissions or components that didn't work as they would expect as a real life user.
 
 ## User Stories
-
+The below tables detail the paths I followed on the site to test each of the user stories, also documented with screenshots of the components and location on the site.
 
 ### First Time (Unregistered) User
 
@@ -38,22 +40,30 @@
 
 ## Code Testing
 
-
 ### HTML
+
+I used [W3 HTML Validator](https://validator.w3.org/) to validate all HTML files by URI, pasting each page into the address bar and checking to ensure no errors were found.
 
 
 ### CSS
+
+I used [W3 CSS Validator](https://jigsaw.w3.org/css-validator/validator) to validate the style.css file and received no errors.
 
 
 ### JS
 
 
+
+
 ### Python
+Webhook_handler lines too long
+products/forms.py
 
 
-## Performance Testing
 
-### Lighthouse
+## Lighthouse
+
+
 
 
 [Return to README](README.md)

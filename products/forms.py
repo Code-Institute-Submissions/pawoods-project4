@@ -9,7 +9,8 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = '__all__'
 
-    image = forms.ImageField(label='Image', required=False, widget=CustomClearableFileInput)
+    image = forms.ImageField(label='Image', required=False,
+                             widget=CustomClearableFileInput)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -18,7 +19,7 @@ class ProductForm(forms.ModelForm):
 
         brands = Brand.objects.all()
         brand_friendly_names = [(b.id, b.get_friendly_name()) for b in brands]
-        
+
         self.fields['sub_category'].choices = sub_friendly_names
         self.fields['brand'].choices = brand_friendly_names
 

@@ -21,7 +21,9 @@ def all_products(request):
     if request.user.is_authenticated:
         try:
             profile = UserProfile.objects.get(user=request.user)
-            wish_list = list(profile.wishlist.all().values_list('product', flat=True))
+            wish_list = list(
+                profile.wishlist.all().values_list('product', flat=True)
+            )
         except UserProfile.DoesNotExist:
             profile = None
             wish_list = None
@@ -45,7 +47,9 @@ def all_products(request):
                 sortkey == 'lower_name'
                 products = products.annotate(lower_name=Lower('name'))
             if sortkey == 'category':
-                """ Gets category name through the sub_category of the product """
+                """
+                Gets category name through the sub_category of the product
+                """
                 sortkey = 'sub_category__category__name'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
@@ -53,12 +57,19 @@ def all_products(request):
                     sortkey = f'-{sortkey}'
             products = products.order_by(sortkey)
 
-
         if 'category' in request.GET:
             selected_category = request.GET['category']
-            """ Gets a list of the sub categories of the selected category """
-            selected_subcats = list(sub_categories.filter(category__name=selected_category).values_list('name', flat=True))
-            """ filters the product query set based on the sub categories list """
+            """
+            Gets a list of the sub categories of the selected category
+            """
+            selected_subcats = list(
+                sub_categories.filter(
+                    category__name=selected_category
+                    ).values_list('name', flat=True)
+                )
+            """
+            filters the product query set based on the sub categories list
+            """
             products = products.filter(sub_category__name__in=selected_subcats)
             category = categories.get(name=selected_category)
 
@@ -66,7 +77,7 @@ def all_products(request):
             selected_subcat = request.GET['sub_category']
             products = products.filter(sub_category__name=selected_subcat)
             sub_category = sub_categories.get(name=selected_subcat)
-        
+
         if 'brand' in request.GET:
             selected_brand = request.GET['brand']
             products = products.filter(brand__name=selected_brand)
@@ -75,7 +86,8 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "No search criteria entered, displaying all products")
+                messages.error(request, "No search criteria entered, \
+                               displaying all products")
                 return redirect(reverse('products'))
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
