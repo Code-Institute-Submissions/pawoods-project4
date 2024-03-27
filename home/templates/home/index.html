@@ -42,6 +42,7 @@
         </div>
     </div>
     <!-- Carousel -->
+    {% if updates|length > 0 %}
     <div class="col-12 col-lg-6 p-0">
         <div id="home-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -125,6 +126,24 @@
             </button>
         </div>
     </div>
+    {% else %}
+    <div class="col-12 col-lg-6 p-0">
+        <div class="home-image">
+            <div class="w-100 h-100 img-cont">
+                <img src="{{ MEDIA_URL }}defaultupdate.webp" class="d-block w-100" alt="Pen Image">
+            </div>
+            <div class="carousel-caption">
+                <h3>Shop our collection of Fine Writing pens!</h3>
+                <a href="{% url 'products' %}?sub_category=fine_writing" class="btn btn-dark m-2">
+                    Go! 
+                    <span class="icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
     <!-- Home image -->
     <div class="col-12 col-lg-6 p-0">
         <div class="home-image">
