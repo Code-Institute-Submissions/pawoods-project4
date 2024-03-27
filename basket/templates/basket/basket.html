@@ -4,7 +4,7 @@
 {% block page_header %}
 <div class="container-fluid text-center">
     <h2 class="mt-2">Basket</h2>
-    <hr class="w-50"/>
+    <hr class="w-50">
 </div>
 {% endblock %}
 {% block content %}
@@ -69,7 +69,7 @@
             <small>£{{ item.product.price }} each</small>
         </div>
     </div>
-    <hr class="w-50"/>
+    <hr class="w-50">
     <!-- Confirm Delete Modal -->
     <div class="modal fade" id="confirm-remove-{{ item.item_id }}" tabindex="-1" aria-labelledby="remove-modal-{{ item.item_id }}" aria-hidden="true">
         <div class="modal-dialog">
@@ -136,7 +136,7 @@
 {% endblock %}
 {% block postloadjs %}
 {{ block.super }}
-<script type="text/javascript">
+<script>
     $('.remove').click(function (e) {
         console.log('clicked')
         var csrfToken = "{{ csrf_token }}";

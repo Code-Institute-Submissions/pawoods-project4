@@ -91,8 +91,8 @@ h5 {
 }
 
 .btn-accent {
-    color: #FFFAEB;
-    background-color: #5a5450c3;
+    color: #ffffff;
+    background-color: #5a5450;
     border: none;
 }
 
@@ -100,8 +100,8 @@ h5 {
 .btn-accent:focus,
 .btn-accent:active,
 .btn-accent:not(:disabled):not(.disabled):active {
-    color: #FFFAEB;
-    background-color: #5a5450;
+    color: #ffffff;
+    background-color: #5a5450c0;
     border: none;
 }
 

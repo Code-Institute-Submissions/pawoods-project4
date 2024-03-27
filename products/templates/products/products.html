@@ -57,25 +57,25 @@
             <div class="product-buttons">
                 {% if product.is_liked %}
                 <div class="wish-list">
-                    <a class="icon liked" href="{% url 'wish_list' product.id %}">
+                    <a class="icon liked" href="{% url 'wish_list' product.id %}" aria-label="Like">
                         <i class="fa-solid fa-heart"></i>
                     </a>
                 </div>
                 {% else %}
                 <div class="wish-list">
-                    <a class="icon" href="{% url 'wish_list' product.id %}">
+                    <a class="icon" href="{% url 'wish_list' product.id %}" aria-label="Like">
                         <i class="fa-regular fa-heart"></i>
                     </a>
                 </div>
                 {% endif %}
                 {% if request.user.is_superuser %}
                 <div class="edit">
-                    <a class="icon" href="{% url 'edit_product' product.id %}">
+                    <a class="icon" href="{% url 'edit_product' product.id %}" aria-label="edit">
                         <i class="fa-solid fa-pen"></i>
                     </a>
                 </div>
                 <div class="delete">
-                    <a class="icon" data-toggle="modal" data-target="#confirm-remove-{{ product.id }}">
+                    <a class="icon" href="#confirm-remove-{{ product.id }}" data-toggle="modal" data-target="#confirm-remove-{{ product.id }}" aria-label="delete">
                         <i class="fa-solid fa-trash"></i>
                     </a>
                 </div>

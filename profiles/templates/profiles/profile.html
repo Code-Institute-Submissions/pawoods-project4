@@ -108,18 +108,18 @@
                 <div class="product-container col-12 col-sm-6 col-md-4 col-lg-3 my-1">
                     <div class="product-buttons">
                         <div class="wish-list">
-                            <a class="icon liked" href="{% url 'wish_list' wish.product.id %}">
+                            <a class="icon liked" href="{% url 'wish_list' wish.product.id %}" aria-label="like">
                                 <i class="fa-solid fa-heart"></i>
                             </a>
                         </div>
                         {% if request.user.is_superuser %}
                         <div class="edit">
-                            <a class="icon" href="{% url 'edit_product' wish.product.id %}">
+                            <a class="icon" href="{% url 'edit_product' wish.product.id %}" aria-label="edit">
                                 <i class="fa-solid fa-pen"></i>
                             </a>
                         </div>
                         <div class="delete">
-                            <a class="icon" data-toggle="modal" data-target="#confirm-remove-{{ wish.product.id }}">
+                            <a class="icon" data-toggle="modal" href="#confirm-remove-{{ wish.product.id }}" data-target="#confirm-remove-{{ wish.product.id }}" aria-label="delete">
                                 <i class="fa-solid fa-trash"></i>
                             </a>
                         </div>

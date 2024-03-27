@@ -6,14 +6,14 @@
     <div class="row mb-2">
         <div class="container-fluid text-center">
             <h2 class="mt-2">Order Complete</h2>
-            <hr class="w-50"/>
+            <hr class="w-50">
             <p>Thank you for your order, please see order summary below. A confirmation email will be sent to <strong>{{ order.email }}.</strong></p>
         </div>     
         <!-- Details summary -->
         <div class="col-12 col-md-6 order-md-2">
             <div class="container-fluid text-center">
                 <h3 class="mt-2">Details</h3>
-                <hr class="w-50"/>
+                <hr class="w-50">
             </div>  
             <div class="container-fluid">
                 <div class="row mb-2">
@@ -79,7 +79,7 @@
         <div class="col-12 col-md-6 order-md-1">
             <div class="container-fluid text-center">
                 <h3 class="mt-2">Summary</h3>
-                <hr class="w-50"/>
+                <hr class="w-50">
             </div>
             {% for item in order.lineitems.all %}
             <div class="row mb-3">
@@ -117,7 +117,7 @@
                     </span>
                 </div>
             </div>
-            <hr class="w-50"/>
+            <hr class="w-50">
             {% endfor %}
             <div class="row mb-3 d-flex flex-row-reverse">
                 <div class="col-6 col-md-4 d-flex align-items-center justify-content-center font-weight-bold">

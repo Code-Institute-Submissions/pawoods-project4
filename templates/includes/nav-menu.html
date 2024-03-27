@@ -20,14 +20,14 @@
                 <div class="dropdown-divider"></div>
                 {% endif %}
                 {% if user.is_superuser %}
-                <a class="sub-menu dropdown-item" data-toggle="collapse" href="#category-options" role="button"
-                    aria-expanded="false" aria-controls="category-options">
+                <a class="sub-menu dropdown-item" data-toggle="collapse" href="#admin-options" role="button"
+                    aria-expanded="false" aria-controls="admin-options">
                     <span class="icon">
                         <i class="fa-solid fa-caret-down"></i>
                     </span>
                     Store Admin
                 </a>
-                <div class="collapse" id="category-options">
+                <div class="collapse" id="admin-options">
                     <a href="{% url 'add_product' %}" class="dropdown-item"><span class="spacer">Add Product</span></a>
                     <a href="{% url 'add_update' %}" class="dropdown-item"><span class="spacer">Add Post</span></a>
                     <a href="{% url 'admin:index' %}" class="dropdown-item"><span class="spacer">Admin Panel</span></a>
@@ -52,7 +52,7 @@
                 </a>
                 {% for category in categories %}
                 <a class="sub-menu dropdown-item" data-toggle="collapse" href="#{{ category.name }}-options" role="button"
-                    aria-expanded="false" aria-controls="category-options">
+                    aria-expanded="false" aria-controls="{{ category.name }}-options">
                     <span class="icon">
                         <i class="fa-solid fa-caret-down"></i>
                     </span>
