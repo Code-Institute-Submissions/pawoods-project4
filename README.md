@@ -1,6 +1,9 @@
 # Pencil + Paper
 Pencil + Paper is an online retail store, selling a range of art and stationery supplies to consumers. The site allows the consumers the ability to see a range of products from different categories and brands, place orders, register and maintain a profile with the site and see updates posted by the store.
 
+## About Us
+
+
 ![Am I Responsive Screenshot](/media/readme/amiresponsive.webp)
 
 View live site [here!](https://project-4-pawoods-21f8fc070c89.herokuapp.com/)
@@ -30,6 +33,7 @@ View live site [here!](https://project-4-pawoods-21f8fc070c89.herokuapp.com/)
     -   [Support Credits](#support-credits)
 ## UX
 ### User Stories
+
 The first part of the planning process was to develop the suer stories that would guide the development and design, these are broken down into the three teirs of users below: 
 1. First time (unregistered) user - I should...
     - See a consistent and easily accessible navigation menu with access to all applicable parts of the site.
@@ -56,7 +60,6 @@ The first part of the planning process was to develop the suer stories that woul
 
 For all wireframes, including mobile, tablet and desktop views, please see [WIREFRAMES.md](WIREFRAMES.md) file.
 
-
 #### Data Design
 Using a relational database for this project, it was important to design the data from the outset to ensure every element interacted correctly with those it needed to as well as giving the users the best experience of the site.
 I drew up the data structure early on in the project to keep in mind when developing so as to avoid having to go back and make changes once everything was up and running. I used the base Boutique Ado walkthrough project as a starting point and then build custom models on top of this to enhance the site.
@@ -79,7 +82,6 @@ PT Serif
 Nunito
 
 ![Nunito Image](/media/readme/nunito.webp)
-
 
 ##### Icons
 I used [Font Awesome](https://fontawesome.com/) for all the icons on the site, using them to draw the attention of the user either to a navigation or CTA element or to important areas of information, brand labels, payment information etc.
@@ -142,15 +144,12 @@ Before developing the project, i made a list of the features i wanted to include
 
 ## Testing
 
-➕➕➕➕➕
-
 For all manual user testing, lighthouse performance testing and code validation, please see [TESTING.md](TESTING.md) file.
-
-➕➕➕➕➕
 
 ### Bugs
 
 #### Fixed Bugs
+
 1. Bug found when adding updates to the carousel, active attribute was being set to all slides in the loop - Fixed by adding if statement to check forloop.counter == 1 to only set active to the first update slide in the loop.
 
 2. Bug found where update link was not submitting the form on basket page - this was caused by empty href tags left on the links element, removing them fixed the issue.

@@ -9,6 +9,10 @@ from products.models import Product
 
 @login_required
 def profile(request):
+    """
+    A View to show the user profile with order histoy,
+    details and wish list
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == "POST":
@@ -37,6 +41,7 @@ def profile(request):
 
 @login_required
 def wish_list(request, product_id):
+    """ Add or remove items clicked on to the user wish list """
     profile = get_object_or_404(UserProfile, user=request.user)
     product = get_object_or_404(Product, pk=product_id)
 

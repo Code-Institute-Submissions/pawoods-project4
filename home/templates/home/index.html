@@ -3,20 +3,32 @@
 
 {% block content %}
 <div class="row p-0 m-0">
-    <div class="col-12 col-lg-6 py-4">
-        <div class="main">
-            <h1>About Us</h1>
-            <p>A paragraph about us</p>
+    <!-- About section -->
+    <div class="col-12">
+        <div class="main p-4">
             <div class="row">
-                <div class="col-12 text-center">
-                    <a href="{% url 'products' %}" class="btn btn-dark remove m-2" id="remove-{{ update.id }}">
-                        All Products 
-                        <span class="icon">
-                            <i class="fas fa-chevron-right"></i>
-                        </span>
-                    </a>
+                <div class="col-10 offset-1 col-md-8 offset-md-2 text-center">
+                    <h1>About Us</h1>
+                    <p class="welcome">
+                        Welcome to <span class="logo">Pencil + Paper!</span>
+                        We are an independent retailer based in Cardiff, South Wales.
+                    </p>
+                    <p class="welcome">
+                        We specialise in selling a wide range of products to cater to the 
+                        needs of people from many different creative backgrounds, 
+                        from students to artists and writers. We stock products including fine writing pens, 
+                        stationery and art supplies including crafts, drawing and multiple different paint discipline ranges.
+                    </p>
+                    <p class="welcome">
+                        We pride ourselves on providing the highest quality products with friendly, personal customer service. 
+                    </p>
+                    <p class="welcome">
+                        Shop with us to see what we can offer you!
+                    </p>
                 </div>
-                {% if not user.is_authenticated %}
+            </div>
+            {% if not user.is_authenticated %}
+            <div class="row">
                 <div class="col-12 text-center">
                     <a href="{% url 'account_signup' %}" class="btn btn-accent m-2">
                         Register
@@ -25,22 +37,21 @@
                         </span>
                     </a>
                 </div>
-                {% endif %}
             </div>
+            {% endif %}
         </div>
     </div>
-
+    <!-- Carousel -->
     <div class="col-12 col-lg-6 p-0">
-        <!-- Carousel -->
         <div id="home-carousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 {% for update in updates %}
                 <div class="carousel-item {% if forloop.counter == 1 %}active{% endif %}">
                     <div class="w-100 h-100 img-cont">
                         {% if update.image %}
-                        <img src="{{ MEDIA_URL }}{{ update.image }}" class="d-block w-100" alt="...">
+                        <img src="{{ MEDIA_URL }}{{ update.image }}" class="d-block w-100" alt="Post Image">
                         {% else %}
-                        <img src="{{ MEDIA_URL }}defaultupdate.webp" class="d-block w-100" alt="...">
+                        <img src="{{ MEDIA_URL }}defaultupdate.webp" class="d-block w-100" alt="Post Image">
                         {% endif %}
                     </div>
                     <div class="carousel-caption">
@@ -112,6 +123,23 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </button>
+        </div>
+    </div>
+    <!-- Home image -->
+    <div class="col-12 col-lg-6 p-0">
+        <div class="home-image">
+            <div class="w-100 h-100 img-cont">
+                <img src="{{ MEDIA_URL }}background.webp" class="d-block w-100" alt="Home Image">
+            </div>
+            <div class="carousel-caption">
+                <h3>Shop all our products now!</h3>
+                <a href="{% url 'products' %}" class="btn btn-dark m-2">
+                    All Products 
+                    <span class="icon">
+                        <i class="fas fa-chevron-right"></i>
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
