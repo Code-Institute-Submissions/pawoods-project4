@@ -51,7 +51,7 @@
 <body>
     <!-- Nav Bar -->
     <nav class="navbar theme-light fixed-top">
-        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#menu-modal">
+        <button type="button" class="btn btn-light" data-toggle="modal" data-target="#menu-modal" aria-label="menu">
             <i class="fa-solid fa-bars"></i>
         </button>
         <a href="{% url 'home' %}" class="navbar-brand m-0 d-sm-none">
@@ -60,7 +60,7 @@
         <a href="{% url 'home' %}" class="navbar-brand m-0 d-none d-sm-inline">
             <h2>Pencil + Paper</h2>
         </a>
-        <a href="{% url 'view_basket' %}" class="btn btn-light basket">
+        <a href="{% url 'view_basket' %}" class="btn btn-light basket" aria-label="basket">
             <i class="fa-solid fa-basket-shopping"></i>
             {% if total > 0 %}
             <div class="item-count">
@@ -107,19 +107,19 @@
                 <p class="text-center p-3">If you want to find out more about us online, please visit us at our social media pages where you can follow to receive the latest updates from the store including new ranges and offers, as well as day to day store updates.</p>
                 <div class="social-links row">
                     <div class="col-6 offset-3 d-flex flex-row justify-content-center align-items-center">
-                        <a class="text-center light px-4" aria-hidden="true" href="https://www.facebook.com/" target="_blank">
+                        <a class="text-center light px-4" href="https://www.facebook.com/" target="_blank">
                             <span class="icon">
                                 <i class="fa-brands fa-facebook"></i>
                             </span>
                             <span class="sr-only">Facebook</span>
                         </a>
-                        <a class="text-center light px-4" aria-hidden="true" href="https://twitter.com/" target="_blank">
+                        <a class="text-center light px-4" href="https://twitter.com/" target="_blank">
                             <span class="icon">
                                 <i class="fa-brands fa-x-twitter"></i>
                             </span>
                             <span class="sr-only">Twiiter/X</span>
                         </a>
-                        <a class="text-center light px-4" aria-hidden="true" href="https://www.instagram.com/" target="_blank">
+                        <a class="text-center light px-4" href="https://www.instagram.com/" target="_blank">
                             <span class="icon">
                                 <i class="fa-brands fa-instagram"></i>
                             </span>

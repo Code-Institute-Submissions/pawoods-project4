@@ -56,12 +56,12 @@
                         {% if request.user.is_superuser %}
                         <div class="admin-options row d-flex justify-content-center">
                             <div class="edit p-3 text-center">
-                                <a class="icon" href="{% url 'edit_update' update.id %}">
+                                <a class="icon" href="{% url 'edit_update' update.id %}" aria-label="edit">
                                     <i class="fa-solid fa-pen"></i>
                                 </a>
                             </div>
                             <div class="delete p-3 text-center">
-                                <a class="icon" data-toggle="modal" data-target="#confirm-remove-{{ update.id }}">
+                                <a class="icon" data-toggle="modal" data-target="#confirm-remove-{{ update.id }}" aria-label="delete">
                                     <i class="fa-solid fa-trash"></i>
                                 </a>
                             </div>
