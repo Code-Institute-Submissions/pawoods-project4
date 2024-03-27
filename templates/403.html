@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid text-center">
+    <h2 class="mt-2">Forbidden</h2>
+    <hr class="w-50"/>
+    <p>Oops, something went wrong there! Please click below to return to the home page</p>
+    <div class="row">
+        <div class="col-12 text-center">
+            <a href="{% url 'home' %}" class="btn btn-accent my-2">
+                Take me home
+                <span class="icon">
+                    <i class="fas fa-chevron-right"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
